@@ -1,0 +1,26 @@
+.project-container {
+
+  padding: 20px;
+}
+
+mat-card {
+
+  margin-bottom: 20px;
+
+  padding: 20px;
+}
+
+table {
+
+  width: 100%;
+}
+
+form {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 20px;
+}

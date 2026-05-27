@@ -1,0 +1,82 @@
+.client-page
+{
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+
+    background: #f5f7fa;
+
+    min-height: 100vh;
+}
+
+.client-card
+{
+    width: 100%;
+
+    max-width: 700px;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 20px
+        rgba(0, 0, 0, 0.1);
+}
+
+.header-section
+{
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+.header-section h1
+{
+    margin-bottom: 10px;
+
+    color: #3f51b5;
+
+    font-size: 32px;
+
+    font-weight: 600;
+}
+
+.header-section p
+{
+    color: #666;
+
+    font-size: 15px;
+}
+
+.full-width
+{
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.checkbox-section
+{
+    margin-bottom: 25px;
+}
+
+.button-section
+{
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 15px;
+}
+
+button
+{
+    min-width: 150px;
+
+    height: 45px;
+}

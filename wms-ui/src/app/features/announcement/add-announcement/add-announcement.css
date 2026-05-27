@@ -1,0 +1,84 @@
+.announcement-page {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px;
+
+  background: #f4f6f9;
+
+  min-height: 100vh;
+}
+
+.announcement-card {
+
+  width: 100%;
+
+  max-width: 700px;
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 20px
+    rgba(0, 0, 0, 0.1);
+}
+
+.header-section {
+
+  margin-bottom: 25px;
+
+  text-align: center;
+}
+
+.header-section h1 {
+
+  margin-bottom: 10px;
+
+  color: #3f51b5;
+
+  font-size: 32px;
+
+  font-weight: 600;
+}
+
+.header-section p {
+
+  color: #666;
+
+  font-size: 15px;
+}
+
+.full-width {
+
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+.checkbox-section {
+
+  margin-bottom: 25px;
+}
+
+.button-section {
+
+  display: flex;
+
+  gap: 15px;
+
+  justify-content: flex-end;
+}
+
+button {
+
+  min-width: 160px;
+
+  height: 45px;
+
+  font-weight: 500;
+}

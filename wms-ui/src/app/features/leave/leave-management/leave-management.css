@@ -1,0 +1,21 @@
+.leave-container {
+  padding: 20px;
+}
+
+mat-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.reject-btn {
+  margin-left: 10px;
+}

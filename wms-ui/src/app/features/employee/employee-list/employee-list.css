@@ -1,0 +1,15 @@
+.employee-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+mat-card {
+  padding: 20px;
+}
+
+.delete-btn {
+  margin-left: 10px;
+}

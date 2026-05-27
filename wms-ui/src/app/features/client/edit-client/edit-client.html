@@ -1,0 +1,148 @@
+<div class="client-page">
+
+    <mat-card class="client-card">
+
+        <div class="header-section">
+
+            <h1>
+                Edit Client
+            </h1>
+
+            <p>
+                Update client information
+                and business details.
+            </p>
+
+        </div>
+
+        <form
+            [formGroup]="clientForm"
+
+            (ngSubmit)="onSubmit()">
+
+            <mat-form-field
+                appearance="outline"
+
+                class="full-width">
+
+                <mat-label>
+                    Client Name
+                </mat-label>
+
+                <input
+                    matInput
+
+                    formControlName="clientName">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+
+                class="full-width">
+
+                <mat-label>
+                    Company Name
+                </mat-label>
+
+                <input
+                    matInput
+
+                    formControlName="companyName">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+
+                class="full-width">
+
+                <mat-label>
+                    Email
+                </mat-label>
+
+                <input
+                    matInput
+
+                    type="email"
+
+                    formControlName="email">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+
+                class="full-width">
+
+                <mat-label>
+                    Phone Number
+                </mat-label>
+
+                <input
+                    matInput
+
+                    formControlName="phoneNumber">
+
+            </mat-form-field>
+
+            <mat-form-field
+                appearance="outline"
+
+                class="full-width">
+
+                <mat-label>
+                    Address
+                </mat-label>
+
+                <textarea
+                    matInput
+
+                    rows="4"
+
+                    formControlName="address">
+                </textarea>
+
+            </mat-form-field>
+
+            <div class="checkbox-section">
+
+                <mat-checkbox formControlName="isActive">
+
+                    Active Client
+
+                </mat-checkbox>
+
+            </div>
+
+            <div class="button-section">
+
+                <button
+                    mat-raised-button
+                    color="primary"
+
+                    type="submit">
+
+                    Update Client
+
+                </button>
+
+                <button
+                    mat-stroked-button
+                    color="warn"
+
+                    type="button"
+
+                    routerLink="/clients">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

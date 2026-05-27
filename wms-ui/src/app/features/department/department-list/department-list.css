@@ -1,0 +1,25 @@
+.department-container {
+
+  padding: 20px;
+}
+
+mat-card {
+
+  margin-bottom: 20px;
+
+  padding: 20px;
+}
+
+table {
+
+  width: 100%;
+}
+
+form {
+
+  display: flex;
+
+  gap: 20px;
+
+  align-items: center;
+}

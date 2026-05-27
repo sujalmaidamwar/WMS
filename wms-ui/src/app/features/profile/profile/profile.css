@@ -1,0 +1,31 @@
+.profile-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 40px;
+}
+
+.profile-card {
+
+  width: 400px;
+
+  padding: 30px;
+
+  text-align: center;
+}
+
+.profile-info {
+
+  margin: 30px 0;
+
+  text-align: left;
+}
+
+p {
+
+  font-size: 18px;
+
+  margin-bottom: 15px;
+}

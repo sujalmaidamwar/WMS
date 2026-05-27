@@ -1,0 +1,15 @@
+.form-container {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  width: 500px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}

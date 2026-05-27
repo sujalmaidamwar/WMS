@@ -1,0 +1,20 @@
+.attendance-container {
+
+  padding: 20px;
+}
+
+table {
+
+  width: 100%;
+}
+
+mat-card {
+
+  padding: 20px;
+}
+
+button-group{
+  padding: 20px;
+  gap: 15px;
+}
+

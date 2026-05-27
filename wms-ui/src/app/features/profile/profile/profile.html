@@ -1,0 +1,38 @@
+<div class="profile-container">
+
+  <mat-card class="profile-card">
+
+    <h1>User Profile</h1>
+
+    <div class="profile-info">
+
+      <p>
+
+        <strong>Username:</strong>
+
+        {{ username }}
+
+      </p>
+
+      <p>
+
+        <strong>Role:</strong>
+
+        {{ role }}
+
+      </p>
+
+    </div>
+
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="logout()">
+
+      Logout
+
+    </button>
+
+  </mat-card>
+
+</div>

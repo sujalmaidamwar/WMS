@@ -1,0 +1,39 @@
+.audit-page
+{
+    padding: 30px;
+
+    background: #f5f7fa;
+
+    min-height: 100vh;
+}
+
+.audit-card
+{
+    padding: 25px;
+
+    border-radius: 16px;
+}
+
+.header-section
+{
+    margin-bottom: 25px;
+}
+
+.header-section h1
+{
+    color: #3f51b5;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.header-section p
+{
+    color: #666;
+}
+
+table
+{
+    width: 100%;
+}

@@ -1,0 +1,239 @@
+<div class="project-container">
+
+  <mat-card>
+
+    <h2>Projects</h2>
+
+    <form [formGroup]="projectForm" (ngSubmit)="addProject()">
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Project Name
+        </mat-label>
+
+        <input matInput formControlName="projectName">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Description
+        </mat-label>
+
+        <input matInput formControlName="description">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Start Date
+        </mat-label>
+
+        <input matInput type="date" formControlName="startDate">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          End Date
+        </mat-label>
+
+        <input matInput type="date" formControlName="endDate">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Client
+        </mat-label>
+
+        <mat-select formControlName="clientId">
+
+          <mat-option *ngFor="let client of clients " [value]="client.clientId">
+
+            {{
+            client.clientName
+            }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Employees
+        </mat-label>
+
+        <mat-select multiple formControlName="employeeIds">
+
+          <mat-option *ngFor="
+              let emp of employees
+            " [value]="
+              emp.employeeId
+            ">
+
+            {{ emp.firstName }}
+            {{ emp.lastName }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">
+
+        Add Project
+
+      </button>
+
+    </form>
+
+  </mat-card>
+
+  <mat-card>
+
+    <table mat-table [dataSource]="projects">
+
+      <!-- ID -->
+      <ng-container matColumnDef="projectId">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          ID
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.projectId }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Name -->
+      <ng-container matColumnDef="projectName">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Name
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.projectName }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Description -->
+      <ng-container matColumnDef="description">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Description
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.description }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Start -->
+      <ng-container matColumnDef="startDate">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Start
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.startDate
+          | date }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- End -->
+      <ng-container matColumnDef="endDate">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          End
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.endDate
+          | date }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Client
+
+        </th>
+
+        <td mat-cell *matCellDef="let project">
+
+          {{
+          project.clientName
+          }}
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="employees">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Employees
+
+        </th>
+
+        <td mat-cell *matCellDef="let p">
+
+          {{ p.employeeNames?.join(', ') }}
+
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns">
+      </tr>
+
+      <tr mat-row *matRowDef="let row;
+          columns:
+          displayedColumns">
+      </tr>
+
+    </table>
+
+  </mat-card>
+
+</div>

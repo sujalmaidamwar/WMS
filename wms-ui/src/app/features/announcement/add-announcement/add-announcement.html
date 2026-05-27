@@ -1,0 +1,102 @@
+<div class="announcement-page">
+
+  <mat-card class="announcement-card">
+
+    <div class="header-section">
+
+      <h1>
+        Add Announcement
+      </h1>
+
+      <p>
+        Create organization-wide announcements
+        for employees and managers.
+      </p>
+
+    </div>
+
+    <form
+      [formGroup]="announcementForm"
+
+      (ngSubmit)="onSubmit()">
+
+      <!-- Title -->
+
+      <mat-form-field appearance="outline"
+        class="full-width">
+
+        <mat-label>
+          Announcement Title
+        </mat-label>
+
+        <input
+          matInput
+          placeholder="Enter announcement title"
+          formControlName="title">
+
+      </mat-form-field>
+
+      <!-- Message -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>
+          Announcement Message
+        </mat-label>
+
+        <textarea
+          matInput
+          rows="6"
+
+          placeholder="Enter announcement details"
+
+          formControlName="message">
+        </textarea>
+
+      </mat-form-field>
+
+      <!-- Status -->
+
+      <div class="checkbox-section">
+
+        <mat-checkbox
+          formControlName="isActive">
+
+          Active Announcement
+
+        </mat-checkbox>
+
+      </div>
+
+      <!-- Buttons -->
+
+      <div class="button-section">
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+
+          Save Announcement
+
+        </button>
+
+        <button
+          mat-stroked-button
+          color="warn"
+          routerLink="/announcements"
+          type="button">
+
+          Cancel
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>

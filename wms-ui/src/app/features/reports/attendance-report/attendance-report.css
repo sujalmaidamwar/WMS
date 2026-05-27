@@ -1,0 +1,55 @@
+.report-page {
+
+  padding: 30px;
+
+  background: #f5f7fa;
+
+  min-height: 100vh;
+}
+
+.report-card {
+
+  padding: 25px;
+
+  border-radius: 15px;
+}
+
+.header-section {
+
+  margin-bottom: 25px;
+}
+
+.header-section h1 {
+
+  color: #0d0d0e;
+
+  margin-bottom: 10px;
+}
+
+.header-section p {
+
+  color: #666;
+}
+
+.filter-section {
+
+  display: flex;
+
+  gap: 20px;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 25px;
+}
+
+table {
+
+  width: 100%;
+}
+
+button {
+
+  height: 50px;
+}

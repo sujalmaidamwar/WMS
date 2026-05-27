@@ -1,0 +1,94 @@
+<div class="form-container" *ngIf="isLoaded">
+
+  <mat-card>
+
+    <h2>Edit Employee</h2>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          First Name
+        </mat-label>
+
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Last Name
+        </mat-label>
+
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Email
+        </mat-label>
+
+        <input matInput formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Phone Number
+        </mat-label>
+
+        <input matInput formControlName="phoneNumber">
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Department
+        </mat-label>
+
+        <mat-select formControlName="departmentId">
+
+          <mat-option *ngFor="
+        let dept of departments
+      " [value]="dept.departmentId">
+
+            {{ dept.departmentName }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Date of Birth
+        </mat-label>
+
+        <input matInput type="date" formControlName="dob">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Date of Joining
+        </mat-label>
+
+        <input matInput type="date" formControlName="doj">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+
+        Update Employee
+
+      </button>
+
+    </form>
+
+  </mat-card>
+
+</div>
