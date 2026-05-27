@@ -1,0 +1,96 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+
+stages:
+
+# =========================
+# BACKEND BUILD
+# =========================
+
+- stage: BackendBuild
+
+  jobs:
+
+  - job: BuildAPI
+
+    steps:
+
+    - task: UseDotNet@2
+
+      inputs:
+        packageType: 'sdk'
+        version: '8.x'
+
+    - script: |
+
+        cd WMS-Solution
+        dotnet restore
+
+      displayName:
+        Restore .NET Solution
+
+    - script: |
+
+        cd WMS-Solution
+        dotnet build --configuration $(buildConfiguration)
+
+      displayName:
+        Build API
+
+    - script: |
+
+        cd WMS-Solution
+        dotnet test --configuration $(buildConfiguration)
+
+      displayName:
+        Run Tests
+
+    - task: PublishBuildArtifacts@1
+
+      inputs:
+        PathtoPublish:
+          '$(Build.SourcesDirectory)/WMS-Solution'
+
+        ArtifactName:
+          'backend-artifact'
+
+# =========================
+# FRONTEND BUILD
+# =========================
+
+- stage: FrontendBuild
+
+  jobs:
+
+  - job: BuildAngular
+
+    steps:
+
+    - task: NodeTool@0
+
+      inputs:
+        versionSpec: '20.x'
+
+    - script: |
+
+        cd wms-ui
+        npm install
+        npm run build
+
+      displayName:
+        Build Angular App
+
+    - task: PublishBuildArtifacts@1
+
+      inputs:
+        PathtoPublish:
+          '$(Build.SourcesDirectory)/wms-ui/dist'
+
+        ArtifactName:
+          'frontend-artifact'
