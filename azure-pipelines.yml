@@ -29,24 +29,25 @@ stages:
 
     - script: |
 
-        cd WMS-Solution
-        dotnet restore
+        dotnet restore WMS-Solution/WMS-Solution.sln
 
       displayName:
         Restore .NET Solution
 
     - script: |
 
-        cd WMS-Solution
-        dotnet build --configuration $(buildConfiguration)
+        dotnet build
+        WMS-Solution/WMS-Solution.sln
+        --configuration $(buildConfiguration)
 
       displayName:
         Build API
 
     - script: |
 
-        cd WMS-Solution
-        dotnet test --configuration $(buildConfiguration)
+        dotnet test
+        WMS-Solution/WMS-Solution.sln
+        --configuration $(buildConfiguration)
 
       displayName:
         Run Tests
