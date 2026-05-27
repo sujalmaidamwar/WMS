@@ -29,15 +29,15 @@ stages:
 
     - script: |
 
-        dotnet restore WMS-Solution/WMS-Solution.slnx
+        dotnet restore WMS-Solution/WMS.API/WMS.API.csproj
 
       displayName:
-        Restore .NET Solution
+        Restore API
 
     - script: |
 
         dotnet build
-        WMS-Solution/WMS-Solution.slnx
+        WMS-Solution/WMS.API/WMS.API.csproj
         --configuration $(buildConfiguration)
 
       displayName:
@@ -46,7 +46,7 @@ stages:
     - script: |
 
         dotnet test
-        WMS-Solution/WMS-Solution.slnx
+        WMS-Solution/WMS.Tests/WMS.Tests.csproj
         --configuration $(buildConfiguration)
 
       displayName:
@@ -60,7 +60,6 @@ stages:
 
         ArtifactName:
           'backend-artifact'
-
 # =========================
 # FRONTEND BUILD
 # =========================
