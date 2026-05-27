@@ -36,18 +36,14 @@ stages:
 
     - script: |
 
-        dotnet build
-        WMS-Solution/WMS.API/WMS.API.csproj
-        --configuration $(buildConfiguration)
+        dotnet build WMS-Solution/WMS.API/WMS.API.csproj --configuration $(buildConfiguration)
 
       displayName:
         Build API
 
     - script: |
 
-        dotnet test
-        WMS-Solution/WMS.Tests/WMS.Tests.csproj
-        --configuration $(buildConfiguration)
+        dotnet test WMS-Solution/WMS.Tests/WMS.Tests.csproj --configuration $(buildConfiguration)
 
       displayName:
         Run Tests
