@@ -29,7 +29,7 @@ stages:
 
     - script: |
 
-        dotnet restore WMS-Solution/WMS-Solution.sln
+        dotnet restore WMS-Solution/WMS-Solution.slnx
 
       displayName:
         Restore .NET Solution
@@ -37,7 +37,7 @@ stages:
     - script: |
 
         dotnet build
-        WMS-Solution/WMS-Solution.sln
+        WMS-Solution/WMS-Solution.slnx
         --configuration $(buildConfiguration)
 
       displayName:
@@ -46,7 +46,7 @@ stages:
     - script: |
 
         dotnet test
-        WMS-Solution/WMS-Solution.sln
+        WMS-Solution/WMS-Solution.slnx
         --configuration $(buildConfiguration)
 
       displayName:
