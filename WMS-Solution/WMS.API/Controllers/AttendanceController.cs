@@ -108,4 +108,67 @@ GetAttendanceByMonth(
 
         return Ok(attendance);
     }
+
+    [HttpPost("checkin")]
+    public async Task<IActionResult>
+     CheckIn(
+
+         int employeeId,
+
+         string workMode)
+    {
+        try
+        {
+            await _attendanceService
+                .CheckInAsync(
+
+                    employeeId,
+
+                    workMode
+                );
+
+            return Ok(new
+            {
+                message =
+                    "Checked In Successfully"
+            });
+        }
+
+        catch (Exception ex)
+        {
+            return BadRequest(new
+            {
+                message = ex.Message
+            });
+        }
+    }
+
+
+    [HttpPost("checkout")]
+    public async Task<IActionResult>
+    CheckOut(
+        int employeeId)
+    {
+        try
+        {
+            await _attendanceService
+                .CheckOutAsync(
+                    employeeId
+                );
+
+            return Ok(new
+            {
+                message =
+                    "Checked Out Successfully"
+            });
+        }
+
+        catch (Exception ex)
+        {
+            return BadRequest(new
+            {
+                message = ex.Message
+            });
+        }
+    }
 }

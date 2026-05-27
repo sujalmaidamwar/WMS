@@ -14,4 +14,20 @@ public class Attendance
 
     [ForeignKey("EmployeeId")]
     public Employee? Employee { get; set; }
+
+    public DateTime?
+    CheckInTime
+    { get; set; }
+
+    public DateTime?
+        CheckOutTime
+    { get; set; }
+
+    public double?
+        TotalHours
+    { get; set; }
+
+    public string?
+        WorkMode
+    { get; set; }
 }

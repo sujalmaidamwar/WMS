@@ -15,6 +15,14 @@ using WMS.Infrastructure.Data;
 using WMS.Infrastructure.Repositories;
 using WMS.Infrastructure.Repositories.Employee;
 using WMS.Infrastructure.Services;
+using WMS.Application
+.Interfaces.Repositories;
+
+using WMS.Infrastructure
+.Repositories;
+
+using WMS.Application
+.Interfaces.Services;
 
 namespace WMS.API
 {
@@ -108,68 +116,53 @@ namespace WMS.API
                     });
             });
 
-            builder.Services
-    .AddScoped<
-        IProjectRepository,
-        ProjectRepository>();
+            builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
+            
+            builder.Services.AddScoped<IProjectService,ProjectService>();
 
-            builder.Services
-                .AddScoped<
-                    IProjectService,
-                    ProjectService>();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-            builder.Services.AddAutoMapper(
-    typeof(MappingProfile));
+            builder.Services.AddScoped<ILeaveRequestRepository,LeaveRequestRepository>();
 
-            builder.Services
-    .AddScoped<
-        ILeaveRequestRepository,
-        LeaveRequestRepository>();
-
-            builder.Services
-                .AddScoped<
-                    ILeaveRequestService,
-                    LeaveRequestService>();
+            builder.Services.AddScoped<ILeaveRequestService,LeaveRequestService>();
 
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
-            builder.Services
-    .AddScoped<
-        IAttendanceRepository,
-        AttendanceRepository>();
+            builder.Services.AddScoped<IAttendanceRepository,AttendanceRepository>();
 
-            builder.Services
-                .AddScoped<
-                    IAttendanceService,
-                    AttendanceService>();
+            builder.Services.AddScoped<IAttendanceService,AttendanceService>();
 
             builder.Services.AddScoped<IAuthService, AuthService>();
 
-            builder.Services
-    .AddScoped<
-        IDepartmentRepository,
-        DepartmentRepository>();
+            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
 
-            builder.Services
-                .AddScoped<
-                    IDepartmentService,
-                    DepartmentService>();
+            builder.Services.AddScoped<IDepartmentService,DepartmentService>();
 
 
-            builder.Services
-    .AddScoped<
-        IUserRepository,
-        UserRepository>();
+            builder.Services.AddScoped<IUserRepository,UserRepository>();
+
+            builder.Services.AddScoped<IAnnouncementRepository,AnnouncementRepository>();
+
+            builder.Services.AddScoped<IAnnouncementService,AnnouncementService>();
+
+
+            builder.Services.AddScoped<IClientRepository,ClientRepository>();
+
+            builder.Services.AddScoped<IClientService,ClientService>();
+
+            builder.Services.AddScoped<IAuditLogRepository,AuditLogRepository>();
+
+            builder.Services.AddScoped<IAuditLogService,AuditLogService>();
+
+            
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+
+            app.UseSwaggerUI();
 
             app.UseMiddleware<ExceptionMiddleware>();
             
@@ -184,6 +177,22 @@ namespace WMS.API
 
 
             app.MapControllers();
+
+            Console.WriteLine( BCrypt.Net.BCrypt.HashPassword("manager123"),BCrypt.Net.BCrypt.HashPassword("manager123"));
+            var adminHash =
+    BCrypt.Net.BCrypt
+        .HashPassword(
+            "Sujal123"
+        );
+
+            var managerHash =
+                BCrypt.Net.BCrypt
+                    .HashPassword(
+                        "Manthan123"
+                    );
+
+
+            
 
             app.Run();
         }

@@ -26,4 +26,8 @@ GetAttendanceByMonth(
     int employeeId,
     int month,
     int year);
+
+    Task<Attendance?>
+    GetTodayAttendanceAsync(
+        int employeeId);
 }

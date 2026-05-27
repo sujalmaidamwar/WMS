@@ -1,10 +1,3 @@
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.csproj.AssemblyReference.cache
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\rpswa.dswa.cache.json
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.AssemblyInfoInputs.cache
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.AssemblyInfo.cs
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.csproj.CoreCompileInputs.cache
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.MvcApplicationPartsAssemblyInfo.cache
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\appsettings.Development.json
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\appsettings.json
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\WMS.API.staticwebassets.endpoints.json
@@ -17,6 +10,7 @@ D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\AutoMapper.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\Azure.Core.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\Azure.Identity.dll
+D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\BCrypt.Net-Core.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\Humanizer.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -137,6 +131,15 @@ D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\WMS.Infrastructure.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\WMS.Application.pdb
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\WMS.Infrastructure.pdb
 D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\WMS.Domain.pdb
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.csproj.AssemblyReference.cache
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.AssemblyInfoInputs.cache
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.AssemblyInfo.cs
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.csproj.CoreCompileInputs.cache
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.MvcApplicationPartsAssemblyInfo.cs
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.MvcApplicationPartsAssemblyInfo.cache
+D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.sourcelink.json
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -153,5 +156,3 @@ D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\refint\WMS.API.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.pdb
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.genruntimeconfig.cache
 D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\ref\WMS.API.dll
-D:\Capgi_Capstone\WMS-Solution\WMS.API\bin\Debug\net8.0\BCrypt.Net-Core.dll
-D:\Capgi_Capstone\WMS-Solution\WMS.API\obj\Debug\net8.0\WMS.API.MvcApplicationPartsAssemblyInfo.cs

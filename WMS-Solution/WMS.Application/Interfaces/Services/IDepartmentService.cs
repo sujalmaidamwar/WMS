@@ -1,8 +1,6 @@
-﻿using WMS.Application
-.DTOs.Department;
+﻿using WMS.Application.DTOs.Department;
 
-namespace WMS.Application
-.Interfaces.Services;
+namespace WMS.Application.Interfaces.Services;
 
 public interface
     IDepartmentService

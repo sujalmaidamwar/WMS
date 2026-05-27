@@ -14,4 +14,8 @@ public class User
         = string.Empty;
 
     public int? EmployeeId { get; set; }
+
+    public Employee?
+        Employee
+    { get; set; }
 }

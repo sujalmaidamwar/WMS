@@ -3,6 +3,8 @@ using WMS.Application.Interfaces.Repositories;
 using WMS.Application.Interfaces.Services;
 using WMS.Domain.Entities;
 using BCrypt.Net;
+using WMS.Application
+.DTOs.AuditLog;
 
 namespace WMS.Application.Services.Employee
 {
@@ -10,15 +12,21 @@ namespace WMS.Application.Services.Employee
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository, IUserRepository userRepository)
-        {
-            _employeeRepository = employeeRepository;
-            _userRepository = userRepository;
-        }
-
+        private readonly
+    IAuditLogService
+        _auditLogService;
         private readonly
     IUserRepository
         _userRepository;
+
+        public EmployeeService(IEmployeeRepository employeeRepository, IUserRepository userRepository,IAuditLogService auditLogService)
+        {
+            _employeeRepository = employeeRepository;
+            _userRepository = userRepository;
+            _auditLogService = auditLogService;
+        }
+
+        
 
         public async Task<IEnumerable<EmployeeDto>> GetAllAsync()
         {
@@ -32,14 +40,14 @@ namespace WMS.Application.Services.Employee
                 Email = e.Email,
                 PhoneNumber = e.PhoneNumber,
                 DepartmentId = e.DepartmentId,
-
-                DepartmentName =
-    e.Department != null
-        ? e.Department.DepartmentName
+                Role =
+    e.User != null
+        ? e.User.Role
         : null,
+                DepartmentName = e.Department != null ? e.Department.DepartmentName : null,
                 DOB = e.DOB,
                 DOJ = e.DOJ,
-                Status = e.Status
+                Status = e.Status,
             });
         }
 
@@ -102,11 +110,30 @@ namespace WMS.Application.Services.Employee
                     + "@123"
                 ),
 
-        Role = "Employee"
+        Role = employeeDto.Role
     };
 
             await _userRepository
                 .AddUserAsync(user);
+
+            await _auditLogService
+    .AddAsync(
+
+        new AuditLogDto
+        {
+            Action =
+                "Add",
+
+            EntityName =
+                "Employee",
+
+            Description =
+                $"Added employee: {employee.FirstName}",
+
+            PerformedBy =
+                "Admin"
+        }
+    );
         }
 
         public async Task UpdateAsync(EmployeeDto employeeDto)
@@ -126,11 +153,47 @@ namespace WMS.Application.Services.Employee
             employee.Status = employeeDto.Status;
 
             await _employeeRepository.UpdateAsync(employee);
+            await _auditLogService
+    .AddAsync(
+
+        new AuditLogDto
+        {
+            Action =
+                "Update",
+
+            EntityName =
+                "Employee",
+
+            Description =
+                $"Added employee: {employee.FirstName}",
+
+            PerformedBy =
+                "Admin"
+        }
+    );
         }
 
         public async Task DeleteAsync(int id)
         {
             await _employeeRepository.DeleteAsync(id);
+            await _auditLogService
+    .AddAsync(
+
+        new AuditLogDto
+        {
+            Action =
+                "Add",
+
+            EntityName =
+                "Employee",
+
+            Description =
+                $"Deleted Employee with ID: {id}",
+
+            PerformedBy =
+                "Admin"
+        }
+    );
         }
     }
 }

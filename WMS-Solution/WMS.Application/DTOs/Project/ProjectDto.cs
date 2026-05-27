@@ -27,4 +27,18 @@ public class ProjectDto
     EmployeeNames
     { get; set; }
     = new();
+
+    public int?
+    ClientId
+    {
+        get;
+        set;
+    }
+
+    public string?
+        ClientName
+    {
+        get;
+        set;
+    }
 }

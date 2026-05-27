@@ -22,4 +22,11 @@ GetAttendanceByMonth(
     int month,
 
     int year);
+
+    Task CheckInAsync(
+    int employeeId,
+    string workMode);
+
+    Task CheckOutAsync(
+        int employeeId);
 }

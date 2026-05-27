@@ -41,9 +41,14 @@ namespace WMS.Application.DTOs.Employee
         { get; set; }
 
 
-        
+
         public string?
             DepartmentName
         { get; set; }
+
+        public string Role
+        { get; set; } 
     }
+
+
 }

@@ -5,6 +5,7 @@ D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.GeneratedM
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.AssemblyInfoInputs.cache
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.AssemblyInfo.cs
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.csproj.CoreCompileInputs.cache
+D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.sourcelink.json
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\refint\WMS.Domain.dll
 D:\Capgi_Capstone\WMS-Solution\WMS.Domain\obj\Debug\net8.0\WMS.Domain.pdb

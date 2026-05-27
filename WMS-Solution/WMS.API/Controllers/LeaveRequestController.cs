@@ -56,7 +56,7 @@ public class LeaveRequestController
     }
 
 
-    [Authorize(Roles = "Admin,HR")]
+    [Authorize(Roles = "Admin,Manager")]
     [HttpPut("approve/{id}")]
     public async Task<IActionResult>
         ApproveLeave(int id)
@@ -72,7 +72,7 @@ public class LeaveRequestController
     }
 
 
-    [Authorize(Roles = "Admin,HR")]
+    [Authorize(Roles = "Admin,Manager")]
     [HttpPut("reject/{id}")]
     public async Task<IActionResult>
         RejectLeave(int id)

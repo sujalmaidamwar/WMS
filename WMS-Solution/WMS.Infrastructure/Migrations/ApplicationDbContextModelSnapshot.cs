@@ -37,6 +37,36 @@ namespace WMS.Infrastructure.Migrations
                     b.ToTable("EmployeeProject");
                 });
 
+            modelBuilder.Entity("WMS.Domain.Entities.Announcement", b =>
+                {
+                    b.Property<int>("AnnouncementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnnouncementId"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnnouncementId");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("WMS.Domain.Entities.Attendance", b =>
                 {
                     b.Property<int>("AttendanceId")
@@ -48,6 +78,12 @@ namespace WMS.Infrastructure.Migrations
                     b.Property<DateTime>("AttendanceDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("CheckInTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOutTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
@@ -55,11 +91,85 @@ namespace WMS.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("TotalHours")
+                        .HasColumnType("float");
+
+                    b.Property<string>("WorkMode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("AttendanceId");
 
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Attendances");
+                });
+
+            modelBuilder.Entity("WMS.Domain.Entities.AuditLog", b =>
+                {
+                    b.Property<int>("AuditLogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditLogId"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PerformedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PerformedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AuditLogId");
+
+                    b.ToTable("AuditLogs");
+                });
+
+            modelBuilder.Entity("WMS.Domain.Entities.Client", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("WMS.Domain.Entities.Department", b =>
@@ -184,6 +294,9 @@ namespace WMS.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"));
 
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -198,6 +311,8 @@ namespace WMS.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ProjectId");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Projects");
                 });
@@ -249,6 +364,10 @@ namespace WMS.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique()
+                        .HasFilter("[EmployeeId] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -329,6 +448,24 @@ namespace WMS.Infrastructure.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("WMS.Domain.Entities.Project", b =>
+                {
+                    b.HasOne("WMS.Domain.Entities.Client", "Client")
+                        .WithMany("Projects")
+                        .HasForeignKey("ClientId");
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("WMS.Domain.Entities.User", b =>
+                {
+                    b.HasOne("WMS.Domain.Entities.Employee", "Employee")
+                        .WithOne("User")
+                        .HasForeignKey("WMS.Domain.Entities.User", "EmployeeId");
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("WMS.Domain.Entities.UserLogin", b =>
                 {
                     b.HasOne("WMS.Domain.Entities.Role", "Role")
@@ -340,9 +477,19 @@ namespace WMS.Infrastructure.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("WMS.Domain.Entities.Client", b =>
+                {
+                    b.Navigation("Projects");
+                });
+
             modelBuilder.Entity("WMS.Domain.Entities.Department", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("WMS.Domain.Entities.Employee", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

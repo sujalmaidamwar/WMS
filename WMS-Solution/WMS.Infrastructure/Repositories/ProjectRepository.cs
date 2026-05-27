@@ -30,8 +30,8 @@ public class ProjectRepository
         return await _context
             .Projects
 
-            .Include(p =>
-                p.Employees)
+            .Include(p => p.Employees)
+            .Include(p => p.Client)
 
             .ToListAsync();
     }

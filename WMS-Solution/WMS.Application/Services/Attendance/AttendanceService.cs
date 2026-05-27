@@ -113,19 +113,142 @@ GetAttendanceByMonth(
                 );
 
         return attendance.Select(a =>
-            new AttendanceDto
-            {
-                AttendanceId =
-                    a.AttendanceId,
+    new AttendanceDto
+    {
+        AttendanceId =
+            a.AttendanceId,
 
-                EmployeeId =
-                    a.EmployeeId,
+        EmployeeId =
+            a.EmployeeId,
 
-                AttendanceDate =
-                    a.AttendanceDate,
+        AttendanceDate =
+            a.AttendanceDate,
 
-                Status =
-                    a.Status
-            });
+        Status =
+            a.Status,
+
+        CheckInTime =
+            a.CheckInTime,
+
+        CheckOutTime =
+            a.CheckOutTime,
+
+        TotalHours =
+            a.TotalHours,
+
+        WorkMode =
+            a.WorkMode
+    });
+    }
+
+    public async Task
+    CheckInAsync(
+
+        int employeeId,
+
+        string workMode)
+    {
+        var attendance =
+
+            await _attendanceRepository
+
+                .GetTodayAttendanceAsync(
+                    employeeId
+                );
+
+        // Already checked in
+
+        if (
+
+            attendance != null
+
+            &&
+
+            attendance.CheckInTime
+                != null
+        )
+        {
+            throw new Exception(
+                "Already checked in today"
+            );
+        }
+
+        // Create today's attendance
+
+        if (attendance == null)
+        {
+            attendance =
+                new Attendance
+                {
+                    EmployeeId =
+                        employeeId,
+
+                    AttendanceDate =
+                        DateTime.Today,
+
+                    Status =
+                        "Present"
+                };
+
+            await _attendanceRepository
+                .AddAsync(attendance);
+        }
+
+        // Update attendance
+
+        attendance.CheckInTime =
+            DateTime.Now;
+
+        attendance.WorkMode =
+            workMode;
+
+        attendance.Status =
+            "Present";
+
+        await _attendanceRepository
+            .UpdateAsync(attendance);
+    }
+    public async Task
+    CheckOutAsync(
+        int employeeId)
+    {
+        var attendance =
+
+            await _attendanceRepository
+
+                .GetTodayAttendanceAsync(
+                    employeeId
+                );
+
+        if (attendance == null)
+        {
+            throw new Exception(
+                "Please check in first"
+            );
+        }
+
+        if (
+            attendance.CheckOutTime
+            != null
+        )
+        {
+            throw new Exception(
+                "Already checked out"
+            );
+        }
+
+        attendance.CheckOutTime =
+            DateTime.Now;
+
+        attendance.TotalHours =
+
+            (
+                attendance.CheckOutTime
+                -
+                attendance.CheckInTime
+            )?.TotalHours;
+
+        await _attendanceRepository
+            .UpdateAsync(attendance);
     }
 }

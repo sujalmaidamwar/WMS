@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Configurations\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

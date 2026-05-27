@@ -8,9 +8,13 @@ using WMS.Application
 .Interfaces.Services;
 
 using WMS.Domain.Entities;
+using WMS.Application
+.DTOs.AuditLog;
 
 namespace WMS.Application
 .Services.Project;
+
+
 
 public class ProjectService
     : IProjectService
@@ -23,19 +27,28 @@ public class ProjectService
         IEmployeeRepository
             _employeeRepository;
 
+    private readonly
+    IAuditLogService
+        _auditLogService;
+
+
+
     public ProjectService(
 
         IProjectRepository
             projectRepository,
 
         IEmployeeRepository
-            employeeRepository)
+            employeeRepository,
+        IAuditLogService auditLogService)
     {
         _projectRepository =
             projectRepository;
 
         _employeeRepository =
             employeeRepository;
+
+        _auditLogService = auditLogService;
     }
 
     public async Task<
@@ -72,6 +85,10 @@ public class ProjectService
 
                 EmployeeNames = p.Employees
                 .Select(e => e.FirstName + " " +e.LastName).ToList(),
+
+                ClientId = p.ClientId,
+
+                ClientName =p.Client != null ? p.Client.ClientName : null,
             });
     }
 
@@ -108,10 +125,31 @@ public class ProjectService
                     projectDto.EndDate,
 
                 Employees =
-                    selectedEmployees
+                    selectedEmployees,
+
+                ClientId =
+                projectDto.ClientId,
             };
 
         await _projectRepository
             .AddAsync(project);
+        await _auditLogService
+    .AddAsync(
+
+        new AuditLogDto
+        {
+            Action =
+                "Add",
+
+            EntityName =
+                "Project",
+
+            Description =
+                $"Added project: {project.ProjectName}",
+
+            PerformedBy =
+                "Admin"
+        }
+    );
     }
 }

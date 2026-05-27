@@ -110,4 +110,24 @@ GetAttendanceByMonth(
 
             .ToListAsync();
     }
+
+    public async Task<Attendance?>
+    GetTodayAttendanceAsync(
+        int employeeId)
+    {
+        return await _context
+            .Attendances
+
+            .FirstOrDefaultAsync(a =>
+
+                a.EmployeeId ==
+                    employeeId
+
+                &&
+
+                a.AttendanceDate.Date
+                    ==
+                DateTime.Today
+            );
+    }
 }
