@@ -194,5 +194,61 @@ namespace WMS.Application.Services.Employee
         }
     );
         }
+
+        public async Task<IEnumerable<EmployeeDto>>
+    GetEmployeesOnlyAsync()
+        {
+            var employees =
+                await _employeeRepository
+                    .GetAllAsync();
+
+            return employees
+
+                .Where(e =>
+
+                    e.User != null &&
+
+                    e.User.Role == "Employee"
+                )
+
+                .Select(e => new EmployeeDto
+                {
+                    EmployeeId = e.EmployeeId,
+
+                    FirstName = e.FirstName,
+
+                    LastName = e.LastName,
+
+                    Role = e.User.Role
+                });
+        }
+
+        public async Task<IEnumerable<EmployeeDto>>
+    GetManagersOnlyAsync()
+        {
+            var managers =
+                await _employeeRepository
+                    .GetAllAsync();
+
+            return managers
+
+                .Where(e =>
+
+                    e.User != null &&
+
+                    e.User.Role == "Manager"
+                )
+
+                .Select(e => new EmployeeDto
+                {
+                    EmployeeId = e.EmployeeId,
+
+                    FirstName = e.FirstName,
+
+                    LastName = e.LastName,
+
+                    Role = e.User.Role
+                });
+        }
     }
 }

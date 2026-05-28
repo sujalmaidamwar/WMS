@@ -97,5 +97,29 @@ UpdateEmployee(
                     "Employee updated successfully"
             });
         }
+
+        [HttpGet("EmployeesOnly")]
+
+        public async Task<IActionResult>
+    GetEmployeesOnly()
+        {
+            var employees =
+                await _employeeService
+                    .GetEmployeesOnlyAsync();
+
+            return Ok(employees);
+        }
+
+        [HttpGet("ManagersOnly")]
+
+        public async Task<IActionResult>
+    GetManagersOnly()
+        {
+            var managers =
+                await _employeeService
+                    .GetManagersOnlyAsync();
+
+            return Ok(managers);
+        }
     }
 }

@@ -164,12 +164,7 @@ export class AttendanceListComponent
 
         next: (response) => {
 
-          this.employees =
-            response.filter(
-              (employee: any) =>
-                employee.role === 'Employee'
-            );
-
+          this.employees =response;
           this.cdr.detectChanges();
 
           console.log(this.employees);

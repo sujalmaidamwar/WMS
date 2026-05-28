@@ -71,4 +71,18 @@ export class EmployeeService {
       `${this.apiUrl}/${id}`
     );
   }
+
+  getEmployeesOnly():
+    Observable<Employee[]> {
+    return this.http.get<Employee[]>(
+      `${this.apiUrl}/EmployeesOnly`
+    );
+  }
+
+  getManagersOnly():
+    Observable<Employee[]> {
+    return this.http.get<Employee[]>(
+      `${this.apiUrl}/ManagersOnly`
+    );
+  }
 }

@@ -41,30 +41,18 @@ export class DashboardService {
       map((data) => {
 
         const employeeCount =
-          data.employees.filter(
-            (employee: any) =>
-
-              employee.role === 'Employee'
-          ).length;
+          data.employees.length;
 
         const today =
           new Date()
             .toLocaleDateString('en-CA');
 
         const employeeIds =
-          data.employees
+          data.employees.map(
+            (employee: any) =>
 
-            .filter(
-              (employee: any) =>
-
-                employee.role === 'Employee'
-            )
-
-            .map(
-              (employee: any) =>
-
-                employee.employeeId
-            );
+              employee.employeeId
+          );
 
         const todayAttendance =
           data.attendance.filter(a =>
@@ -89,12 +77,8 @@ export class DashboardService {
           ).length;
 
         const absentToday =
-          todayAttendance.filter(a =>
-
-            a.status.toLowerCase() ===
-            'absent'
-
-          ).length;
+          employeeCount -
+          presentToday;
 
         return {
 
