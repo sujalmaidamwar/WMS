@@ -614,6 +614,30 @@
         }
       }
     },
+    "/api/Employee/EmployeesOnly": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Employee/ManagersOnly": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/LeaveRequest": {
       "get": {
         "tags": [

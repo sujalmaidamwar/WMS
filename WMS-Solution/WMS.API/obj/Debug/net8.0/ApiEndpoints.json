@@ -394,6 +394,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WMS.API.Controllers.EmployeeController",
+    "Method": "GetEmployeesOnly",
+    "RelativePath": "api/Employee/EmployeesOnly",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WMS.API.Controllers.EmployeeController",
+    "Method": "GetManagersOnly",
+    "RelativePath": "api/Employee/ManagersOnly",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WMS.API.Controllers.LeaveRequestController",
     "Method": "GetLeaveRequests",
     "RelativePath": "api/LeaveRequest",
