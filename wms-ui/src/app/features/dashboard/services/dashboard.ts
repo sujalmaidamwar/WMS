@@ -32,9 +32,12 @@ export class DashboardService {
         this.employeeService
           .getEmployees(),
 
+      
+
       attendance:
         this.attendanceService
           .getAttendance()
+
 
     }).pipe(
 
@@ -43,6 +46,8 @@ export class DashboardService {
         const employeeCount =
           data.employees.length;
 
+          console.log(employeeCount);
+          console.log("----------");
         const today =
           new Date()
             .toLocaleDateString('en-CA');

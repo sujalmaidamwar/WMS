@@ -109,7 +109,7 @@ namespace WMS.Application.Services.Employee
 
         Role = employeeDto.Role,
 
-        EmployeeId = employeeDto.EmployeeId
+        EmployeeId = employee.EmployeeId
     };
 
             await _userRepository
