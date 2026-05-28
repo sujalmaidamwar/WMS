@@ -32,16 +32,18 @@ namespace WMS.Application.Services.Employee
         {
             var employees = await _employeeRepository.GetAllAsync();
 
-            return employees.Where(e => e.User != null &&( e.User.Role == "Employee"||e.User.Role == "Manager" ))
-                .Select(e => new EmployeeDto
-                {
+            return employees.Select(e => new EmployeeDto
+            {
                 EmployeeId = e.EmployeeId,
                 FirstName = e.FirstName,
                 LastName = e.LastName,
                 Email = e.Email,
                 PhoneNumber = e.PhoneNumber,
                 DepartmentId = e.DepartmentId,
-                Role = e.User != null ? e.User.Role : null,
+                Role =
+    e.User != null
+        ? e.User.Role
+        : null,
                 DepartmentName = e.Department != null ? e.Department.DepartmentName : null,
                 DOB = e.DOB,
                 DOJ = e.DOJ,
@@ -84,7 +86,8 @@ namespace WMS.Application.Services.Employee
                 LastName = employeeDto.LastName,
                 Email = employeeDto.Email,
                 PhoneNumber = employeeDto.PhoneNumber,
-                DepartmentId = employeeDto.DepartmentId,
+                DepartmentId =
+    employeeDto.DepartmentId,
                 DOB = employeeDto.DOB,
                 DOJ = employeeDto.DOJ,
                 Status = employeeDto.Status
@@ -107,9 +110,7 @@ namespace WMS.Application.Services.Employee
                     + "@123"
                 ),
 
-        Role = employeeDto.Role,
-
-        EmployeeId = employee.EmployeeId
+        Role = employeeDto.Role
     };
 
             await _userRepository
