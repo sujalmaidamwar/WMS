@@ -158,6 +158,8 @@ export class ProjectList
             response;
 
           this.cdr.detectChanges();
+          console.log(this.employees);
+          console.log(this.employees.length);
         }
       });
   }

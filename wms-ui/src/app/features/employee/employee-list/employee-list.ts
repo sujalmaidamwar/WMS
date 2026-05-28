@@ -60,11 +60,7 @@ export class EmployeeListComponent
 
         next: (response) => {
 
-          this.employees =
-            response.filter(
-              (employee: any) =>
-                employee.role === 'Employee'
-            );
+          this.employees = response;
 
           this.cdr.detectChanges();
 
