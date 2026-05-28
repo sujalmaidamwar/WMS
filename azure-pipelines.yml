@@ -90,3 +90,10 @@ stages:
 
         ArtifactName:
           'frontend-artifact'
+
+    # Deploy to Azure App Service
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: 'AzureConnection1'
+        appName: 'wms-api-sujal-2026'
+        package: '$(Build.ArtifactStagingDirectory)/**/*.zip'    
