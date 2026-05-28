@@ -91,9 +91,36 @@ stages:
         ArtifactName:
           'frontend-artifact'
 
-    # Deploy to Azure App Service
+# =====================================================
+# DEPLOY API
+# =====================================================
+
+- stage: Deploy
+
+  dependsOn:
+    - BackendBuild
+    - FrontendBuild
+
+  jobs:
+
+  - job: DeployAPI
+
+    steps:
+
+    # Publish API
+    - task: DotNetCoreCLI@2
+      displayName: Publish API
+      inputs:
+        command: 'publish'
+        publishWebProjects: false
+        projects: 'WMS-Solution/WMS.API/WMS.API.csproj'
+        arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/api'
+        zipAfterPublish: true
+
+    # Deploy to Azure
     - task: AzureWebApp@1
+      displayName: Deploy API
       inputs:
         azureSubscription: 'AzureConnection1'
         appName: 'wms-api-sujal-2026'
-        package: '$(Build.ArtifactStagingDirectory)/**/*.zip'    
+        package: '$(Build.ArtifactStagingDirectory)/api/**/*.zip'   
