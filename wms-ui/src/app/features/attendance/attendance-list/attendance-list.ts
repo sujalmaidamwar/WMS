@@ -164,12 +164,24 @@ export class AttendanceListComponent
 
         next: (response) => {
 
-          this.employees = response;
+          this.employees =
+            response.filter(
+              (employee: any) =>
+                employee.role === 'Employee'
+            );
 
           this.cdr.detectChanges();
+
+          console.log(this.employees);
+        },
+
+        error: (error) => {
+
+          console.log(error);
         }
       });
   }
+
 
   loadAttendance(): void {
 
@@ -179,19 +191,7 @@ export class AttendanceListComponent
 
         next: (response) => {
 
-          this.attendanceList =
-
-            response.filter(
-
-              (e: any) =>
-
-                e.role
-                  ?.toLowerCase()
-
-                ===
-
-                'employee'
-            );
+          this.attendanceList = response;
 
           this.cdr.detectChanges();
         }
@@ -238,7 +238,8 @@ export class AttendanceListComponent
 
           this.initializeForm();
 
-          this.loadAttendance();
+          //this.loadAttendance();
+          this.cdr.detectChanges()
         },
 
         error: (error) => {

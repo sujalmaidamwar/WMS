@@ -6,7 +6,24 @@
 
     <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
 
+      <mat-form-field appearance="outline" class="full-width">
 
+        <mat-label>
+          Employee
+        </mat-label>
+
+        <mat-select formControlName="employeeId">
+
+          <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+
+            {{ employee.firstName }}
+            {{ employee.lastName }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
 
@@ -151,31 +168,31 @@
   </div>
 
   <!-- Employee Self Attendance -->
-    <p>
-      Is Employee:
-      {{ isEmployee() }}
-    </p>
+  <p>
+    Is Employee:
+    {{ isEmployee() }}
+  </p>
 
-    <div *ngIf="
+  <div *ngIf="
     isEmployee() ">
 
-      <div class="button-group">
+    <div class="button-group">
 
-        <button mat-raised-button color="primary" (click)="checkIn()">
+      <button mat-raised-button color="primary" (click)="checkIn()">
 
-          Check In
+        Check In
 
-        </button>
+      </button>
 
-        <button mat-raised-button color="accent" (click)="checkOut()">
+      <button mat-raised-button color="accent" (click)="checkOut()">
 
-          Check Out
+        Check Out
 
-        </button>
-
-      </div>
+      </button>
 
     </div>
+
+  </div>
 
   <mat-card class="table-card">
 

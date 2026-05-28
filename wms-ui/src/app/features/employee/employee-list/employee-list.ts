@@ -54,17 +54,22 @@ export class EmployeeListComponent
 
   loadEmployees(): void {
 
-
     this.employeeService
       .getEmployees()
       .subscribe({
 
         next: (response) => {
 
-          this.employees = response;
+          this.employees =
+            response.filter(
+              (employee: any) =>
+                employee.role === 'Employee'
+            );
 
           this.cdr.detectChanges();
+
           console.log(this.employees);
+          console.log(this.employees.length);
         },
 
         error: (error) => {
@@ -72,8 +77,8 @@ export class EmployeeListComponent
           console.log(error);
         }
       });
-
   }
+
 
   deleteEmployee(id: number): void {
 

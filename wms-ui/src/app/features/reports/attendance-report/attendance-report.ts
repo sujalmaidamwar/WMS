@@ -95,7 +95,7 @@ export class
     private attendanceService:
       AttendanceService,
     private cdr: ChangeDetectorRef,
-    private employee: EmployeeService
+    private employeeService: EmployeeService
 
 
   ) { }
@@ -106,19 +106,26 @@ export class
 
   loadEmployees(): void {
 
-    this
-      .employee
-
+    this.employeeService
       .getEmployees()
-
       .subscribe({
 
         next: (response) => {
 
           this.employees =
-            response;
+            response.filter(
+              (employee: any) =>
+                employee.role === 'Employee'
+            );
 
-            this.cdr.detectChanges();
+          this.cdr.detectChanges();
+
+          console.log(this.employees);
+        },
+
+        error: (error) => {
+
+          console.log(error);
         }
       });
   }

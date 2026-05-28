@@ -8,14 +8,15 @@ import {
   Observable
 } from 'rxjs';
 
+import { environment } from '../../../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProjectService {
 
-  private apiUrl =
-    'https://localhost:7152/api/Project';
+private apiUrl =`${environment.apiBaseUrl}/Project`;
 
   constructor(
     private http: HttpClient

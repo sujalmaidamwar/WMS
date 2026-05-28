@@ -6,6 +6,7 @@ import { AttendanceService } from '../../attendance/services/attendance';
 import { EmployeeService } from '../../employee/services/employee';
 
 import { DashboardStats } from '../../../core/models/dashboard-stats.model';
+import { AuthService } from '../../../core/services/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class DashboardService {
       EmployeeService,
 
     private attendanceService:
-      AttendanceService
+      AttendanceService,
+    private authService: AuthService
   ) { }
 
   getDashboardStats():
@@ -38,10 +40,31 @@ export class DashboardService {
 
       map((data) => {
 
+        const employeeCount =
+          data.employees.filter(
+            (employee: any) =>
+
+              employee.role === 'Employee'
+          ).length;
 
         const today =
           new Date()
             .toLocaleDateString('en-CA');
+
+        const employeeIds =
+          data.employees
+
+            .filter(
+              (employee: any) =>
+
+                employee.role === 'Employee'
+            )
+
+            .map(
+              (employee: any) =>
+
+                employee.employeeId
+            );
 
         const todayAttendance =
           data.attendance.filter(a =>
@@ -49,6 +72,12 @@ export class DashboardService {
             a.attendanceDate
               .toString()
               .split('T')[0] === today
+
+            &&
+
+            employeeIds.includes(
+              a.employeeId
+            )
           );
 
         const presentToday =
@@ -67,24 +96,10 @@ export class DashboardService {
 
           ).length;
 
-        console.log('TODAY:', today);
-
-        console.log(
-          'ATTENDANCE:',
-          data.attendance
-        );
-
-        console.log(
-          'TODAY ATTENDANCE:',
-          todayAttendance
-        );
-
-
-
         return {
 
           totalEmployees:
-            data.employees.length,
+            employeeCount,
 
           presentToday,
 
@@ -92,9 +107,6 @@ export class DashboardService {
 
           totalAttendance:
             data.attendance.length
-
-
-
         };
 
       })
