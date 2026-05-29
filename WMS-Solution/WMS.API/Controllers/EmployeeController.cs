@@ -77,22 +77,10 @@ namespace WMS.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult>
-UpdateEmployee(
-    int id,
-    EmployeeDto employeeDto)
+        public async Task<IActionResult> UpdateEmployee(
+            int id,EmployeeDto employeeDto)
         {
-            Console.WriteLine(
-        $"EmployeeId={employeeDto.EmployeeId}"
-    );
-
-            Console.WriteLine(
-                $"Role={employeeDto.Role}"
-            );
-            if (id != employeeDto.EmployeeId)
-            {
-                return BadRequest();
-            }
+            employeeDto.EmployeeId = id;
 
             await _employeeService
                 .UpdateAsync(employeeDto);
@@ -103,8 +91,6 @@ UpdateEmployee(
                 message =
                     "Employee updated successfully"
             });
-
-
         }
 
         [HttpGet("EmployeesOnly")]
