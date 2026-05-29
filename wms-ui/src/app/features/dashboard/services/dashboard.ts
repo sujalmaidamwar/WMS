@@ -32,7 +32,7 @@ export class DashboardService {
         this.employeeService
           .getEmployees(),
 
-      
+
 
       attendance:
         this.attendanceService

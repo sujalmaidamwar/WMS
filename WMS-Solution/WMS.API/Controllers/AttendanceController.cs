@@ -51,7 +51,7 @@ public class AttendanceController
         });
     }
 
-    [Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Employee,Manager")]
 
     [HttpGet("my-attendance")]
 
@@ -109,6 +109,7 @@ GetAttendanceByMonth(
         return Ok(attendance);
     }
 
+    [Authorize(Roles = "Employee,Manager")]
     [HttpPost("checkin")]
     public async Task<IActionResult>
      CheckIn(
@@ -144,6 +145,8 @@ GetAttendanceByMonth(
     }
 
 
+
+    [Authorize(Roles = "Employee,Manager")]
     [HttpPost("checkout")]
     public async Task<IActionResult>
     CheckOut(
