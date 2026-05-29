@@ -47,4 +47,25 @@ public class UserRepository
                     username
             );
     }
+
+    public async Task<User?> GetByEmployeeId(int employeeId)
+    {
+        return await _context.Users
+            .FirstOrDefaultAsync(
+                u => u.EmployeeId == employeeId
+            );
+    }
+
+    public async Task DeleteUserAsync(int userId)
+    {
+        var user = await _context.Users
+            .FindAsync(userId);
+
+        if (user != null)
+        {
+            _context.Users.Remove(user);
+
+            await _context.SaveChangesAsync();
+        }
+    }
 }

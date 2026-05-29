@@ -46,7 +46,7 @@ namespace WMS.Application.DTOs.Employee
             DepartmentName
         { get; set; }
 
-        public string Role
+        public string? Role
         { get; set; } 
     }
 

@@ -45,6 +45,12 @@
 
   </a>
 
+  <a *ngIf="isEmployee() || isManager()" mat-list-item routerLink="/my-attendance">
+
+    My Attendance
+
+  </a>
+
   <a *ngIf="
     isAdmin() ||
     isManager()
@@ -64,11 +70,7 @@
 
   </a>
 
-  <a *ngIf="isEmployee() || isManager()" mat-list-item routerLink="/my-attendance">
 
-    My Attendance
-
-  </a>
 
   <a *ngIf="
     isAdmin() ||

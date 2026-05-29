@@ -177,7 +177,18 @@ namespace WMS.Application.Services.Employee
 
         public async Task DeleteAsync(int id)
         {
-            await _employeeRepository.DeleteAsync(id);
+            var user =
+    await _userRepository
+        .GetByEmployeeId(id);
+
+            if (user != null)
+            {
+                await _userRepository
+                    .DeleteUserAsync(user.UserId);
+            }
+
+            await _employeeRepository
+                .DeleteAsync(id);
             await _auditLogService
     .AddAsync(
 

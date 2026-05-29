@@ -101,7 +101,13 @@ export class EmployeeListComponent
         error: (error) => {
 
           console.log(error);
+          console.log("FULL ERROR:", error);
 
+          console.log("ERROR BODY:", error.error);
+
+          console.log("STATUS:", error.status);
+
+          alert(JSON.stringify(error.error));
           alert('Delete Failed');
         }
       });

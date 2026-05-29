@@ -122,6 +122,7 @@ export class EditEmployee
       .subscribe({
 
         next: (response) => {
+          console.log("API RESPONSE:", response);
 
           this.employeeForm.patchValue(response);
         },
@@ -138,6 +139,9 @@ export class EditEmployee
     if (this.employeeForm.invalid) {
       return;
     }
+
+    console.log('Route ID:', this.employeeId);
+    console.log('Form Value:', this.employeeForm.value);
 
     console.log(
       this.employeeForm.value
@@ -160,11 +164,18 @@ export class EditEmployee
         error: (error) => {
 
           console.log(error);
+          console.log("FULL ERROR:", error);
+
+          console.log("ERROR BODY:", error.error);
+
+          console.log("STATUS:", error.status);
+
+          alert(JSON.stringify(error.error));
 
           alert('Update Failed');
         }
 
-        
+
       });
   }
 }
