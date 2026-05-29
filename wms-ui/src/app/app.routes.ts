@@ -94,7 +94,7 @@ export const routes: Routes = [
         canActivate: [roleGuard],
 
         data: {
-          roles: ['Employee']
+          roles: ['Employee','Manager']
         }
       },
 

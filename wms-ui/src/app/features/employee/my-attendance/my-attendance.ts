@@ -67,6 +67,13 @@ export class MyAttendance
     this.loadAttendance();
   }
 
+
+  isManager(): boolean {
+
+    return this.authService
+      .isManager();
+  }
+
   loadAttendance(): void {
 
     this.attendanceService

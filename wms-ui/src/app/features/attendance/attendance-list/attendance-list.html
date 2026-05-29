@@ -167,32 +167,7 @@
 
   </div>
 
-  <!-- Employee Self Attendance -->
-  <p>
-    Is Employee:
-    {{ isEmployee() }}
-  </p>
 
-  <div *ngIf="
-    isEmployee() ">
-
-    <div class="button-group">
-
-      <button mat-raised-button color="primary" (click)="checkIn()">
-
-        Check In
-
-      </button>
-
-      <button mat-raised-button color="accent" (click)="checkOut()">
-
-        Check Out
-
-      </button>
-
-    </div>
-
-  </div>
 
   <mat-card class="table-card">
 
