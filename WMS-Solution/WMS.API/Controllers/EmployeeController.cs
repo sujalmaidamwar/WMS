@@ -82,6 +82,13 @@ UpdateEmployee(
     int id,
     EmployeeDto employeeDto)
         {
+            Console.WriteLine(
+        $"EmployeeId={employeeDto.EmployeeId}"
+    );
+
+            Console.WriteLine(
+                $"Role={employeeDto.Role}"
+            );
             if (id != employeeDto.EmployeeId)
             {
                 return BadRequest();
@@ -96,6 +103,8 @@ UpdateEmployee(
                 message =
                     "Employee updated successfully"
             });
+
+
         }
 
         [HttpGet("EmployeesOnly")]

@@ -42,6 +42,24 @@
         <input matInput formControlName="phoneNumber">
       </mat-form-field>
 
+      <mat-form-field appearance="outline">
+
+        <mat-label>Role</mat-label>
+
+        <mat-select formControlName="role" [disabled] = true>
+
+          <mat-option value="Employee">
+            Employee
+          </mat-option>
+
+          <mat-option value="Manager">
+            Manager
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="full-width">
 

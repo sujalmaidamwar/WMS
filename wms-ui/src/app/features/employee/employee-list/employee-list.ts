@@ -103,7 +103,7 @@ export class EmployeeListComponent
           console.log(error);
           console.log("FULL ERROR:", error);
 
-          console.log("ERROR BODY:", error.error);
+          console.log("ROLE ERROR:",error.error.errors.Role );
 
           console.log("STATUS:", error.status);
 

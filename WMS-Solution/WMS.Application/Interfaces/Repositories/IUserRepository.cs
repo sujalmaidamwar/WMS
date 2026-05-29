@@ -12,4 +12,9 @@ public interface
     Task<User?>
     GetByUsernameAsync(
         string username);
+
+    Task<User?> GetByEmployeeId(int employeeId);
+
+    Task DeleteUserAsync(int userId);
+
 }

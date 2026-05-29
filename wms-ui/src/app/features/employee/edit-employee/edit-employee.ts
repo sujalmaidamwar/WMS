@@ -86,6 +86,11 @@ export class EditEmployee
 
       phoneNumber: ['', Validators.required],
 
+      role: [{
+        value: '',
+        disabled: true
+      }],
+
       departmentId: ['', Validators.required],
 
       dob: ['', Validators.required],
@@ -150,9 +155,8 @@ export class EditEmployee
     this.employeeService
       .updateEmployee(
         this.employeeId,
-        this.employeeForm.value
-      )
-      .subscribe({
+        this.employeeForm.getRawValue()
+      ).subscribe({
 
         next: () => {
 
