@@ -1,18 +1,42 @@
 <div class="attendance-container">
 
+  <mat-card class="attendance-card">
 
-  <p *ngIf="isManager()"></p>
+    <!-- Header -->
 
-  <mat-card>
+    <div class="header-section">
+
+      <div class="header-content">
+
+        <h1>
+          My Attendance
+        </h1>
+
+        <p>
+          View your attendance history and manage daily check-in/check-out.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- Actions -->
+
     <div class="button-group">
 
-      <button mat-raised-button color="primary" (click)="checkIn()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="checkIn()">
 
         Check In
 
       </button>
 
-      <button mat-raised-button color="accent" (click)="checkOut()">
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="checkOut()">
 
         Check Out
 
@@ -20,136 +44,188 @@
 
     </div>
 
-    <h2>My Attendance</h2>
+    <!-- Table -->
 
-    <table mat-table [dataSource]="attendanceRecords">
+    <div class="table-container">
 
-      <!-- Date -->
-      <ng-container matColumnDef="attendanceDate">
+      <table
+        mat-table
+        [dataSource]="attendanceRecords">
 
-        <th mat-header-cell *matHeaderCellDef>
+        <!-- Date -->
 
-          Date
+        <ng-container matColumnDef="attendanceDate">
 
-        </th>
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-        <td mat-cell *matCellDef="let record">
+            Date
 
-          {{
-          record.attendanceDate
-          | date
-          }}
+          </th>
 
-        </td>
+          <td
+            mat-cell
+            *matCellDef="let record">
 
-      </ng-container>
+            {{
+              record.attendanceDate
+              | date:'dd MMM yyyy'
+            }}
 
-      <ng-container matColumnDef="checkInTime">
+          </td>
 
-        <th mat-header-cell *matHeaderCellDef>
+        </ng-container>
 
-          Check In
+        <!-- Check In -->
 
-        </th>
+        <ng-container matColumnDef="checkInTime">
 
-        <td mat-cell *matCellDef="let record">
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-          {{
-          record.checkInTime
-          | date:'shortTime'
-          }}
+            Check In
 
-        </td>
+          </th>
 
-      </ng-container>
+          <td
+            mat-cell
+            *matCellDef="let record">
 
-      <ng-container matColumnDef="checkOutTime">
+            {{
+              record.checkInTime
+              | date:'shortTime'
+            }}
 
-        <th mat-header-cell *matHeaderCellDef>
+          </td>
 
-          Check Out
+        </ng-container>
 
-        </th>
+        <!-- Check Out -->
 
-        <td mat-cell *matCellDef="let record">
+        <ng-container matColumnDef="checkOutTime">
 
-          {{
-          record.checkOutTime
-          | date:'shortTime'
-          }}
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-        </td>
+            Check Out
 
-      </ng-container>
+          </th>
 
-      <ng-container matColumnDef="totalHours">
+          <td
+            mat-cell
+            *matCellDef="let record">
 
-        <th mat-header-cell *matHeaderCellDef>
+            {{
+              record.checkOutTime
+              | date:'shortTime'
+            }}
 
-          Total Hours
+          </td>
 
-        </th>
+        </ng-container>
 
-        <td mat-cell *matCellDef="let record">
+        <!-- Hours -->
 
-          {{
-          record.totalHours
-          | number:'1.1-1'
-          }}
+        <ng-container matColumnDef="totalHours">
 
-        </td>
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-      </ng-container>
+            Total Hours
 
-      <ng-container matColumnDef="workMode">
+          </th>
 
-        <th mat-header-cell *matHeaderCellDef>
+          <td
+            mat-cell
+            *matCellDef="let record">
 
-          Work Mode
+            {{
+              record.totalHours
+              | number:'1.1-1'
+            }}
 
-        </th>
+          </td>
 
-        <td mat-cell *matCellDef="let record">
+        </ng-container>
 
-          {{
-          record.workMode
-          }}
+        <!-- Work Mode -->
 
-        </td>
+        <ng-container matColumnDef="workMode">
 
-      </ng-container>
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-      <!-- Status -->
-      <ng-container matColumnDef="status">
+            Work Mode
 
-        <th mat-header-cell *matHeaderCellDef>
+          </th>
 
-          Status
+          <td
+            mat-cell
+            *matCellDef="let record">
 
-        </th>
+            <span class="mode-badge">
 
+              {{ record.workMode }}
 
+            </span>
 
-        <td mat-cell *matCellDef="let record">
+          </td>
 
-          {{ record.status }}
+        </ng-container>
 
-        </td>
+        <!-- Status -->
 
-      </ng-container>
+        <ng-container matColumnDef="status">
 
-      <tr mat-header-row *matHeaderRowDef="
-          displayedColumns
-        ">
-      </tr>
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-      <tr mat-row *matRowDef="
-          let row;
-          columns: displayedColumns
-        ">
-      </tr>
+            Status
 
-    </table>
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let record">
+
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'present': record.status === 'Present',
+                'absent': record.status === 'Absent',
+                'leave': record.status === 'Leave'
+              }">
+
+              {{ record.status }}
+
+            </span>
+
+          </td>
+
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: displayedColumns
+          ">
+        </tr>
+
+      </table>
+
+    </div>
 
   </mat-card>
 

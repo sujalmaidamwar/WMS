@@ -1,160 +1,164 @@
 <div class="announcement-container">
 
-  <mat-card>
+  <mat-card class="announcement-card">
 
     <div class="header">
 
-      <h2>
-        Announcements
-      </h2>
+      <div class="title-section">
+
+        <h2>Announcements</h2>
+
+        <p>
+          Organization-wide updates and notifications
+        </p>
+
+      </div>
 
       <div *ngIf="isAdmin() || isManager()">
-        <button mat-raised-button color="primary" [routerLink]="['/add-announcement']">
 
-        Add Announcement
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/add-announcement']">
 
-      </button>
+          + New Announcement
+
+        </button>
 
       </div>
 
     </div>
 
-    <table mat-table [dataSource]="
-        announcements
-      ">
+    <div class="table-container">
 
-      <!-- Title -->
+      <table
+        mat-table
+        [dataSource]="announcements">
 
-      <ng-container matColumnDef="title">
+        <!-- Title -->
 
-        <th mat-header-cell *matHeaderCellDef>
+        <ng-container matColumnDef="title">
 
-          Title
+          <th mat-header-cell *matHeaderCellDef>
+            Title
+          </th>
 
-        </th>
+          <td mat-cell *matCellDef="let announcement">
 
-        <td mat-cell *matCellDef="
-            let announcement
+            <strong>
+              {{ announcement.title }}
+            </strong>
+
+          </td>
+
+        </ng-container>
+
+        <!-- Message -->
+
+        <ng-container matColumnDef="message">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Message
+          </th>
+
+          <td mat-cell *matCellDef="let announcement">
+
+            {{ announcement.message }}
+
+          </td>
+
+        </ng-container>
+
+        <!-- Created On -->
+
+        <ng-container matColumnDef="createdOn">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Created On
+          </th>
+
+          <td mat-cell *matCellDef="let announcement">
+
+            {{ announcement.createdOn | date:'dd MMM yyyy' }}
+
+          </td>
+
+        </ng-container>
+
+        <!-- Status -->
+
+        <ng-container matColumnDef="isActive">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Status
+          </th>
+
+          <td mat-cell *matCellDef="let announcement">
+
+            <span
+              class="status-badge active"
+              *ngIf="announcement.isActive">
+
+              Active
+
+            </span>
+
+            <span
+              class="status-badge inactive"
+              *ngIf="!announcement.isActive">
+
+              Inactive
+
+            </span>
+
+          </td>
+
+        </ng-container>
+
+        <!-- Actions -->
+
+        <ng-container matColumnDef="actions">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Actions
+          </th>
+
+          <td mat-cell *matCellDef="let announcement">
+
+            <button
+              *ngIf="isAdmin() || isManager()"
+              mat-stroked-button
+              color="warn"
+              (click)="
+                deleteAnnouncement(
+                  announcement.announcementId
+                )
+              ">
+
+              Delete
+
+            </button>
+
+          </td>
+
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: displayedColumns
           ">
+        </tr>
 
-          {{
-          announcement.title
-          }}
+      </table>
 
-        </td>
-
-      </ng-container>
-
-      <!-- Message -->
-
-      <ng-container matColumnDef="message">
-
-        <th mat-header-cell *matHeaderCellDef>
-
-          Message
-
-        </th>
-
-        <td mat-cell *matCellDef="
-            let announcement
-          ">
-
-          {{
-          announcement.message
-          }}
-
-        </td>
-
-      </ng-container>
-
-      <!-- CreatedOn -->
-
-      <ng-container matColumnDef="createdOn">
-
-        <th mat-header-cell *matHeaderCellDef>
-
-          Created On
-
-        </th>
-
-        <td mat-cell *matCellDef="
-      let announcement
-    ">
-
-          {{
-          announcement.createdOn
-          | date
-          }}
-
-        </td>
-
-      </ng-container>
-
-      <!-- Active -->
-
-      <ng-container matColumnDef="isActive">
-
-        <th mat-header-cell *matHeaderCellDef>
-
-          Status
-
-        </th>
-
-        <td mat-cell *matCellDef="
-      let announcement
-    ">
-
-          {{
-          announcement.isActive
-          ? 'Active'
-          : 'Inactive'
-          }}
-
-        </td>
-
-      </ng-container>
-      <!-- Actions -->
-
-
-      <ng-container matColumnDef="actions">
-
-        <th mat-header-cell *matHeaderCellDef>
-
-          Actions
-
-        </th>
-
-        <td mat-cell *matCellDef="let announcement">
-
-          <button *ngIf="isAdmin() || isManager()" color="warn" (click)="
-        deleteAnnouncement(
-          announcement.announcementId
-        )
-      ">
-
-            Delete
-
-          </button>
-
-        </td>
-
-      </ng-container>
-
-
-      <tr mat-header-row *matHeaderRowDef="
-          displayedColumns
-        ">
-      </tr>
-
-      <tr mat-row *matRowDef="
-          let row;
-
-          columns:
-            displayedColumns
-        ">
-      </tr>
-
-    </table>
+    </div>
 
   </mat-card>
 

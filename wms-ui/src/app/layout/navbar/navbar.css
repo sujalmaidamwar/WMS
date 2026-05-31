@@ -1,3 +1,111 @@
+.navbar {
+
+  height: 70px;
+
+  padding: 0 24px;
+
+  background: #2563eb !important;
+
+  color: white;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Brand */
+
+.brand-section {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.logo-box {
+
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 22px;
+
+  background: rgba(255,255,255,0.15);
+}
+
+.brand-text {
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.title {
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  line-height: 1.2;
+}
+
+.subtitle {
+
+  font-size: 12px;
+
+  opacity: 0.85;
+}
+
+/* Spacer */
+
 .spacer {
+
   flex: 1 1 auto;
+}
+
+/* Profile */
+
+.profile-btn {
+
+  margin-right: 12px;
+
+  font-size: 20px;
+}
+
+/* Logout */
+
+button[mat-raised-button] {
+
+  border-radius: 8px;
+
+  min-width: 100px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .navbar {
+
+    padding: 0 12px;
+  }
+
+  .subtitle {
+
+    display: none;
+  }
+
+  .title {
+
+    font-size: 15px;
+  }
 }

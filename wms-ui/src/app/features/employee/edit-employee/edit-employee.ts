@@ -130,6 +130,7 @@ export class EditEmployee
           console.log("API RESPONSE:", response);
 
           this.employeeForm.patchValue(response);
+
         },
 
         error: (error) => {

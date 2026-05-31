@@ -1,146 +1,186 @@
 <div class="department-container">
 
-  <mat-card>
+  <!-- Add Department Card -->
 
-    <h2>Departments</h2>
+  <mat-card class="department-card">
+
+    <div class="header-section">
+
+
+      <div class="header-content">
+
+        <h1>
+          Department Management
+        </h1>
+
+        <p>
+          Create and manage organizational departments.
+        </p>
+
+      </div>
+
+    </div>
 
     <form
+      class="department-form"
       [formGroup]="departmentForm"
       (ngSubmit)="addDepartment()">
 
-      <mat-form-field
-        appearance="outline">
+      <div class="form-grid">
 
-        <mat-label>
-          Department Name
-        </mat-label>
+        <mat-form-field appearance="outline">
 
-        <input
-          matInput
-          formControlName=
-            "departmentName">
+          <mat-label>
+            Department Name
+          </mat-label>
 
-      </mat-form-field>
+          <input
+            matInput
+            placeholder="Enter department name"
+            formControlName="departmentName">
 
-      <mat-form-field
-        appearance="outline">
+        </mat-form-field>
 
-        <mat-label>
-          Description
-        </mat-label>
+        <mat-form-field appearance="outline">
 
-        <input
-          matInput
-          formControlName=
-            "description">
+          <mat-label>
+            Description
+          </mat-label>
 
-      </mat-form-field>
+          <input
+            matInput
+            placeholder="Enter department description"
+            formControlName="description">
 
-      <button
-        mat-raised-button
-        color="primary">
+        </mat-form-field>
 
-        Add Department
+      </div>
 
-      </button>
+      <div class="button-section">
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+
+          Add Department
+
+        </button>
+
+      </div>
 
     </form>
 
   </mat-card>
 
-  <mat-card>
+  <!-- Department List Card -->
 
-    <table
-      mat-table
-      [dataSource]="dataSource">
+  <mat-card class="table-card">
 
-      <!-- ID -->
-      <ng-container
-        matColumnDef=
-          "departmentId">
+    <div class="table-header">
 
-        <th
-          mat-header-cell
-          *matHeaderCellDef>
+      <h2>
+        Department List
+      </h2>
 
-          ID
+      <span>
+        Total Departments: {{ dataSource.data.length }}
+      </span>
 
-        </th>
+    </div>
 
-        <td
-          mat-cell
-          *matCellDef=
-            "let d">
+    <div class="table-container">
 
-          {{ d.departmentId }}
+      <table
+        mat-table
+        [dataSource]="dataSource">
 
-        </td>
+        <!-- Department ID -->
 
-      </ng-container>
+        <ng-container matColumnDef="departmentId">
 
-      <!-- Name -->
-      <ng-container
-        matColumnDef=
-          "departmentName">
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-        <th
-          mat-header-cell
-          *matHeaderCellDef>
+            ID
 
-          Name
+          </th>
 
-        </th>
+          <td
+            mat-cell
+            *matCellDef="let d">
 
-        <td
-          mat-cell
-          *matCellDef=
-            "let d">
+            {{ d.departmentId }}
 
-          {{ d.departmentName }}
+          </td>
 
-        </td>
+        </ng-container>
 
-      </ng-container>
+        <!-- Department Name -->
 
-      <!-- Description -->
-      <ng-container
-        matColumnDef=
-          "description">
+        <ng-container matColumnDef="departmentName">
 
-        <th
-          mat-header-cell
-          *matHeaderCellDef>
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
 
-          Description
+            Department Name
 
-        </th>
+          </th>
 
-        <td
-          mat-cell
-          *matCellDef=
-            "let d">
+          <td
+            mat-cell
+            *matCellDef="let d">
 
-          {{ d.description }}
+            <strong>
 
-        </td>
+              {{ d.departmentName }}
 
-      </ng-container>
+            </strong>
 
-      <tr
-        mat-header-row
-        *matHeaderRowDef=
-          "displayedColumns">
-      </tr>
+          </td>
 
-      <tr
-        mat-row
-        *matRowDef=
-          "let row;
-          columns:
-          displayedColumns">
-      </tr>
+        </ng-container>
 
-    </table>
+        <!-- Description -->
+
+        <ng-container matColumnDef="description">
+
+          <th
+            mat-header-cell
+            *matHeaderCellDef>
+
+            Description
+
+          </th>
+
+          <td
+            mat-cell
+            *matCellDef="let d">
+
+            {{ d.description }}
+
+          </td>
+
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: displayedColumns
+          ">
+        </tr>
+
+      </table>
+
+    </div>
 
   </mat-card>
 

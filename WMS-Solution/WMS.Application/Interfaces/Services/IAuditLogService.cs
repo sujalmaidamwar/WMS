@@ -1,17 +1,12 @@
 ﻿using WMS.Application
 .DTOs.AuditLog;
 
-namespace WMS.Application
-.Interfaces.Services
+namespace WMS.Application.Interfaces.Services
 {
-    public interface
-        IAuditLogService
+    public interface  IAuditLogService
     {
-        Task<IEnumerable<AuditLogDto>>
-            GetAllAsync();
+        Task<IEnumerable<AuditLogDto>>  GetAllAsync();
 
-        Task AddAsync(
-            AuditLogDto auditLogDto
-        );
+        Task AddAsync( AuditLogDto auditLogDto);
     }
 }

@@ -4,171 +4,177 @@
 
         <div class="header-section">
 
-            <h1>
-                Audit Logs
-            </h1>
+            <div class="header-content">
 
-            <p>
-                Monitor all system activities
-                and administrative actions.
-            </p>
+                <h1>
+                    Audit Logs
+                </h1>
+
+                <p>
+                    Monitor system activities, user actions,
+                    and administrative operations across the platform.
+                </p>
+
+            </div>
 
         </div>
 
-        <table
-            mat-table
+        <div class="table-container">
 
-            [dataSource]="auditLogs"
+            <table
+                mat-table
+                [dataSource]="auditLogs">
 
-            class="mat-elevation-z2">
+                <!-- Action -->
 
-            <!-- Action -->
+                <ng-container matColumnDef="action">
 
-            <ng-container
-                matColumnDef="action">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
 
-                <th
-                    mat-header-cell
-                    *matHeaderCellDef>
+                        Action
 
-                    Action
+                    </th>
 
-                </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let log">
 
-                <td
-                    mat-cell
-                    *matCellDef="let log">
+                        <span
+                            class="action-chip"
 
-                    {{
-                        log.action
-                    }}
+                            [ngClass]="{
+                              'add-action':
+                                log.action === 'Add',
 
-                </td>
+                              'update-action':
+                                log.action === 'Update',
 
-            </ng-container>
+                              'delete-action':
+                                log.action === 'Delete'
+                            }">
 
-            <!-- Entity -->
+                            {{ log.action }}
 
-            <ng-container
-                matColumnDef="entityName">
+                        </span>
 
-                <th
-                    mat-header-cell
-                    *matHeaderCellDef>
+                    </td>
 
-                    Entity
+                </ng-container>
 
-                </th>
+                <!-- Entity -->
 
-                <td
-                    mat-cell
-                    *matCellDef="let log">
+                <ng-container
+                    matColumnDef="entityName">
 
-                    {{
-                        log.entityName
-                    }}
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
 
-                </td>
+                        Entity
 
-            </ng-container>
+                    </th>
 
-            <!-- Description -->
+                    <td
+                        mat-cell
+                        *matCellDef="let log">
 
-            <ng-container
-                matColumnDef="description">
+                        <strong>
 
-                <th
-                    mat-header-cell
-                    *matHeaderCellDef>
+                            {{ log.entityName }}
 
-                    Description
+                        </strong>
 
-                </th>
+                    </td>
 
-                <td
-                    mat-cell
-                    *matCellDef="let log">
+                </ng-container>
 
-                    {{
-                        log.description
-                    }}
+                <!-- Description -->
 
-                </td>
+                <ng-container
+                    matColumnDef="description">
 
-            </ng-container>
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
 
-            <!-- Performed By -->
+                        Description
 
-            <ng-container
-                matColumnDef="performedBy">
+                    </th>
 
-                <th
-                    mat-header-cell
-                    *matHeaderCellDef>
+                    <td
+                        mat-cell
+                        *matCellDef="let log">
 
-                    Performed By
+                        {{ log.description }}
 
-                </th>
+                    </td>
 
-                <td
-                    mat-cell
-                    *matCellDef="let log">
+                </ng-container>
 
-                    {{
-                        log.performedBy
-                    }}
+                <!-- Performed By -->
 
-                </td>
+                <ng-container
+                    matColumnDef="performedBy">
 
-            </ng-container>
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
 
-            <!-- Date -->
+                        Performed By
 
-            <ng-container
-                matColumnDef="performedOn">
+                    </th>
 
-                <th
-                    mat-header-cell
-                    *matHeaderCellDef>
+                    <td
+                        mat-cell
+                        *matCellDef="let log">
 
-                    Date
+                        {{ log.performedBy }}
 
-                </th>
+                    </td>
 
-                <td
-                    mat-cell
-                    *matCellDef="let log">
+                </ng-container>
 
-                    {{
-                        log.performedOn
-                        | date :
-                        'medium'
-                    }}
+                <!-- Date -->
 
-                </td>
+                <ng-container
+                    matColumnDef="performedOn">
 
-            </ng-container>
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
 
-            <tr
-                mat-header-row
+                        Date & Time
 
-                *matHeaderRowDef="
-                    displayedColumns
-                ">
-            </tr>
+                    </th>
 
-            <tr
-                mat-row
+                    <td
+                        mat-cell
+                        *matCellDef="let log">
 
-                *matRowDef="
-                    let row;
+                        {{ log.performedOn | date:'dd MMM yyyy, hh:mm a' }}
 
-                    columns:
-                        displayedColumns
-                ">
-            </tr>
+                    </td>
 
-        </table>
+                </ng-container>
+
+                <tr
+                    mat-header-row
+                    *matHeaderRowDef="displayedColumns">
+                </tr>
+
+                <tr
+                    mat-row
+                    *matRowDef="
+                        let row;
+                        columns: displayedColumns
+                    ">
+                </tr>
+
+            </table>
+
+        </div>
 
     </mat-card>
 

@@ -1,16 +1,11 @@
 ﻿using WMS.Domain.Entities;
 
-namespace WMS.Application
-.Interfaces.Repositories
+namespace WMS.Application.Interfaces.Repositories
 {
-    public interface
-        IAuditLogRepository
+    public interface IAuditLogRepository
     {
-        Task<IEnumerable<AuditLog>>
-            GetAllAsync();
+        Task<IEnumerable<AuditLog>> GetAllAsync();
 
-        Task AddAsync(
-            AuditLog auditLog
-        );
+        Task AddAsync( AuditLog auditLog );
     }
 }

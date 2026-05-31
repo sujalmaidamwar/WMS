@@ -36,18 +36,12 @@ namespace WMS.Application.DTOs.Employee
 
         public string Status { get; set; }
 
-        [Required]
-        public int? DepartmentId
-        { get; set; }
+        [Required] 
+        public int? DepartmentId { get; set; }
+        
+        public string?  DepartmentName { get; set; }
 
-
-
-        public string?
-            DepartmentName
-        { get; set; }
-
-        public string? Role
-        { get; set; } 
+        public string? Role { get; set; } 
     }
 
 

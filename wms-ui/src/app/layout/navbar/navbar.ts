@@ -4,7 +4,7 @@ from '@angular/core';
 import { CommonModule }
 from '@angular/common';
 
-import { Router }
+import { Router, RouterLink }
 from '@angular/router';
 
 import { MaterialModule }
@@ -19,8 +19,9 @@ import { AuthService } from '../../core/services/auth';
 
   imports: [
     CommonModule,
-    MaterialModule
-  ],
+    MaterialModule,
+    RouterLink
+],
 
   templateUrl: './navbar.html',
 

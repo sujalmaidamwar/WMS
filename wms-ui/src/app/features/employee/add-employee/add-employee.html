@@ -1,108 +1,180 @@
 <div class="form-container">
 
-  <mat-card>
+  <mat-card class="employee-card">
 
-    <h2>Add Employee</h2>
+    <div class="header-section">
 
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    
 
-      <mat-form-field appearance="outline" class="full-width">
+      <div class="header-content">
 
-        <mat-label>
-          First Name
-        </mat-label>
+        <h1>
+          Add Employee
+        </h1>
 
-        <input matInput formControlName="firstName">
-      </mat-form-field>
+        <p>
+          Create a new employee profile and assign department and role.
+        </p>
 
-      <mat-form-field appearance="outline" class="full-width">
+      </div>
 
-        <mat-label>
-          Last Name
-        </mat-label>
+    </div>
 
-        <input matInput formControlName="lastName">
-      </mat-form-field>
+    <form
+      class="employee-form"
+      [formGroup]="employeeForm"
+      (ngSubmit)="onSubmit()">
 
-      <mat-form-field appearance="outline" class="full-width">
+      <div class="form-grid">
 
-        <mat-label>
-          Email
-        </mat-label>
+        <!-- First Name -->
 
-        <input matInput formControlName="email">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
 
-      <mat-form-field appearance="outline" class="full-width">
+          <mat-label>
+            First Name
+          </mat-label>
 
-        <mat-label>
-          Phone Number
-        </mat-label>
+          <input
+            matInput
+            placeholder="Enter first name"
+            formControlName="firstName">
 
-        <input matInput formControlName="phoneNumber">
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
+        <!-- Last Name -->
 
-        <mat-label>
-          Department
-        </mat-label>
+        <mat-form-field appearance="outline">
 
-        <mat-select formControlName="departmentId">
+          <mat-label>
+            Last Name
+          </mat-label>
 
-          <mat-option *ngFor="let dept of departments" [value]="dept.departmentId">
+          <input
+            matInput
+            placeholder="Enter last name"
+            formControlName="lastName">
 
-            {{ dept.departmentName }}
+        </mat-form-field>
 
-          </mat-option>
+        <!-- Email -->
 
-        </mat-select>
+        <mat-form-field appearance="outline">
 
-      </mat-form-field>
+          <mat-label>
+            Email Address
+          </mat-label>
 
-      <mat-form-field appearance="outline" class="full-width">
+          <input
+            matInput
+            placeholder="employee@company.com"
+            formControlName="email">
 
-        <mat-label>
-          Date of Birth
-        </mat-label>
+        </mat-form-field>
 
-        <input matInput type="date" formControlName="dob">
-      </mat-form-field>
+        <!-- Phone -->
 
-      <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field appearance="outline">
 
-        <mat-label>
-          Date of Joining
-        </mat-label>
+          <mat-label>
+            Phone Number
+          </mat-label>
 
-        <input matInput type="date" formControlName="doj">
-      </mat-form-field>
+          <input
+            matInput
+            placeholder="+91 XXXXX XXXXX"
+            formControlName="phoneNumber">
 
-      <mat-form-field appearance="outline" class="full-width">
+        </mat-form-field>
 
-        <mat-label>
-          Role
-        </mat-label>
+        <!-- Department -->
 
-        <mat-select formControlName="role">
+        <mat-form-field appearance="outline">
 
-          <mat-option value="Manager">
-            Manager
-          </mat-option>
+          <mat-label>
+            Department
+          </mat-label>
 
-          <mat-option value="Employee">
-            Employee
-          </mat-option>
+          <mat-select formControlName="departmentId">
 
-        </mat-select>
+            <mat-option
+              *ngFor="let dept of departments"
+              [value]="dept.departmentId">
 
-      </mat-form-field>
+              {{ dept.departmentName }}
 
-      <button mat-raised-button color="primary" type="submit">
+            </mat-option>
 
-        Save Employee
+          </mat-select>
 
-      </button>
+        </mat-form-field>
+
+        <!-- Role -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>
+            Role
+          </mat-label>
+
+          <mat-select formControlName="role">
+
+            <mat-option value="Manager">
+              Manager
+            </mat-option>
+
+            <mat-option value="Employee">
+              Employee
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+        <!-- DOB -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>
+            Date of Birth
+          </mat-label>
+
+          <input
+            matInput
+            type="date"
+            formControlName="dob">
+
+        </mat-form-field>
+
+        <!-- DOJ -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>
+            Date of Joining
+          </mat-label>
+
+          <input
+            matInput
+            type="date"
+            formControlName="doj">
+
+        </mat-form-field>
+
+      </div>
+
+      <div class="button-section">
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+
+          Save Employee
+
+        </button>
+
+      </div>
 
     </form>
 

@@ -2,22 +2,13 @@
 
 public class Department
 {
-    public int DepartmentId
-    { get; set; }
+    public int DepartmentId { get; set; }
 
-    public string DepartmentName
-    { get; set; }
-        = string.Empty;
+    public string DepartmentName { get; set; }  = string.Empty;
 
-    public string? Description
-    { get; set; }
+    public string? Description { get; set; }
 
-    public DateTime CreatedOn
-    { get; set; }
-        = DateTime.Now;
+    public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-    public ICollection<Employee>
-    Employees
-    { get; set; }
-    = new List<Employee>();
+    public ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

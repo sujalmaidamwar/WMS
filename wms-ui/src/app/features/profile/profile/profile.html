@@ -2,36 +2,76 @@
 
   <mat-card class="profile-card">
 
-    <h1>User Profile</h1>
+    <div class="profile-header">
 
-    <div class="profile-info">
+      <div class="profile-avatar">
 
-      <p>
+      {{ username.charAt(0).toUpperCase() }}
 
-        <strong>Username:</strong>
+      </div>
 
-        {{ username }}
+      <div>
 
-      </p>
+        <h1>
+          My Profile
+        </h1>
 
-      <p>
+        <p>
+          Manage your account information
+        </p>
 
-        <strong>Role:</strong>
-
-        {{ role }}
-
-      </p>
+      </div>
 
     </div>
 
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="logout()">
+    <div class="profile-details">
 
-      Logout
+      <div class="detail-item">
 
-    </button>
+        <span class="label">
+          Username
+        </span>
+
+        <span class="value">
+          {{ username }}
+        </span>
+
+      </div>
+
+      <div class="detail-item">
+
+        <span class="label">
+          Role
+        </span>
+
+        <span
+          class="role-badge"
+          [ngClass]="{
+            'admin-role': role === 'Admin',
+            'manager-role': role === 'Manager',
+            'employee-role': role === 'Employee'
+          }">
+
+          {{ role }}
+
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="button-section">
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="logout()">
+
+        Logout
+
+      </button>
+
+    </div>
 
   </mat-card>
 

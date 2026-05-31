@@ -17,7 +17,8 @@ namespace WMS.API.Controllers
             _employeeService = employeeService;
         }
 
-        // GET: api/employee
+
+        
         [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -25,7 +26,8 @@ namespace WMS.API.Controllers
             return Ok(employees);
         }
 
-        // GET: api/employee/1
+        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
@@ -37,7 +39,8 @@ namespace WMS.API.Controllers
             return Ok(employee);
         }
 
-        // POST: api/employee
+        
+
         [HttpPost]
         public async Task<IActionResult> AddEmployee(EmployeeDto employeeDto)
         {
@@ -48,8 +51,8 @@ namespace WMS.API.Controllers
                     success = false,
                     message = "Validation Failed",
                     errors = ModelState.Values
-                                .SelectMany(v => v.Errors)
-                                .Select(e => e.ErrorMessage)
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
                 });
             }
 
@@ -64,7 +67,6 @@ namespace WMS.API.Controllers
 
         
 
-        // DELETE: api/employee/1
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
@@ -76,43 +78,40 @@ namespace WMS.API.Controllers
             });
         }
 
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEmployee(
-            int id,EmployeeDto employeeDto)
+            int id,
+            EmployeeDto employeeDto)
         {
             employeeDto.EmployeeId = id;
 
-            await _employeeService
-                .UpdateAsync(employeeDto);
+            await _employeeService.UpdateAsync(employeeDto);
 
             return Ok(new
             {
                 success = true,
-                message =
-                    "Employee updated successfully"
+                message = "Employee updated successfully"
             });
         }
 
-        [HttpGet("EmployeesOnly")]
 
-        public async Task<IActionResult>
-    GetEmployeesOnly()
+
+        [HttpGet("EmployeesOnly")]
+        public async Task<IActionResult> GetEmployeesOnly()
         {
-            var employees =
-                await _employeeService
-                    .GetEmployeesOnlyAsync();
+            var employees = await _employeeService.GetEmployeesOnlyAsync();
 
             return Ok(employees);
         }
 
-        [HttpGet("ManagersOnly")]
 
-        public async Task<IActionResult>
-    GetManagersOnly()
+
+        [HttpGet("ManagersOnly")]
+        public async Task<IActionResult> GetManagersOnly()
         {
-            var managers =
-                await _employeeService
-                    .GetManagersOnlyAsync();
+            var managers = await _employeeService.GetManagersOnlyAsync();
 
             return Ok(managers);
         }

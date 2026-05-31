@@ -4,6 +4,7 @@ using WMS.Application.Interfaces.Services;
 
 namespace WMS.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -15,21 +16,19 @@ namespace WMS.API.Controllers
             _authService = authService;
         }
 
+
+
         [HttpPost("login")]
-        public async Task<IActionResult>
-    Login(LoginDto loginDto)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var token =
-                await _authService
-                    .GenerateToken(loginDto);
+            var token = await _authService.GenerateToken(loginDto);
 
             if (token == null)
             {
                 return Unauthorized(new
                 {
                     success = false,
-                    message =
-                        "Invalid username or password"
+                    message = "Invalid username or password"
                 });
             }
 

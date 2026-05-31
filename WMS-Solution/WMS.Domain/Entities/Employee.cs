@@ -42,18 +42,13 @@ namespace WMS.Domain.Entities
 
         public DateTime UpdatedOn { get; set; }
 
-        public int? DepartmentId
-        { get; set; }
+        public int? DepartmentId { get; set; }
 
-        public Department? Department
-        { get; set; }
+        public Department? Department { get; set; }
 
         public User User{ get; set; }
 
-        public ICollection<Project>
-    Projects
-        { get; set; }
-    = new List<Project>();
+        public ICollection<Project> Projects  { get; set; } = new List<Project>();
     }
 
     

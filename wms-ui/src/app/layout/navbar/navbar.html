@@ -1,13 +1,43 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="navbar">
 
-  <span>
-    Workforce Management System
-  </span>
+  <div class="brand-section">
+
+    <div class="logo-box">
+
+      👥
+
+    </div>
+
+    <div class="brand-text">
+
+      <span class="title">
+
+        Workforce Management System
+
+      </span>
+
+      <span class="subtitle">
+
+        Employee & Project Management
+
+      </span>
+
+    </div>
+
+  </div>
 
   <span class="spacer"></span>
 
   <button
-    mat-button
+    mat-icon-button class="profile-btn" routerLink="/profile">
+
+    👤
+
+  </button>
+
+  <button
+    mat-raised-button
+    color="warn"
     (click)="logout()">
 
     Logout

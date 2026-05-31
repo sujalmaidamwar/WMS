@@ -4,30 +4,17 @@ namespace WMS.Application.Interfaces.Repositories;
 
 public interface IAttendanceRepository
 {
-    Task<IEnumerable<Attendance>>
-        GetAllAsync();
+    Task<IEnumerable<Attendance>> GetAllAsync();
 
     Task AddAsync(Attendance attendance);
 
-    Task<IEnumerable<Attendance>>
-    GetAttendanceByEmployeeId(
-        int employeeId);
+    Task<IEnumerable<Attendance>>  GetAttendanceByEmployeeId(int employeeId);
 
-    Task UpdateAsync(
-    Attendance attendance);
+    Task UpdateAsync(Attendance attendance);
 
-    Task<Attendance?>
-    GetAttendanceByEmployeeAndDate(
-        int employeeId,
-        DateTime attendanceDate);
+    Task<Attendance?> GetAttendanceByEmployeeAndDate(int employeeId, DateTime attendanceDate );
 
-    Task<IEnumerable<Attendance>>
-GetAttendanceByMonth(
-    int employeeId,
-    int month,
-    int year);
+    Task<IEnumerable<Attendance>> GetAttendanceByMonth(int employeeId, int month, int year);
 
-    Task<Attendance?>
-    GetTodayAttendanceAsync(
-        int employeeId);
+    Task<Attendance?> GetTodayAttendanceAsync(int employeeId);
 }

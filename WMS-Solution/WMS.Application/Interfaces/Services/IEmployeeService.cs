@@ -18,10 +18,8 @@ namespace WMS.Application.Interfaces.Services
         Task UpdateAsync(EmployeeDto employeeDto);
 
         Task DeleteAsync(int id);
-        Task<IEnumerable<EmployeeDto>>
-    GetEmployeesOnlyAsync();
+        Task<IEnumerable<EmployeeDto>> GetEmployeesOnlyAsync();
 
-        Task<IEnumerable<EmployeeDto>>
-            GetManagersOnlyAsync();
+        Task<IEnumerable<EmployeeDto>>  GetManagersOnlyAsync();
     }
 }

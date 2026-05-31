@@ -1,102 +1,147 @@
-<mat-nav-list>
+<div class="sidebar-container">
 
-  <a *ngIf="isAdmin()" mat-list-item routerLink="/dashboard">
+  <div class="sidebar-header">
 
-    Dashboard
+    
+    <div class="sidebar-title">
 
-  </a>
+      <h3>WMS</h3>
 
-  <a mat-list-item routerLink="/projects" *ngIf="
-    isAdmin()
-    || isManager()
-  ">
+      <span>Management Portal</span>
 
-    Projects
+    </div>
 
-  </a>
+  </div>
 
-  <a *ngIf="
+  <mat-nav-list>
+
+    <a
+      *ngIf="isAdmin()"
+      mat-list-item
+      routerLink="/dashboard"
+      routerLinkActive="active-link">
+
+      Dashboard
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/projects"
+      routerLinkActive="active-link">
+
+      Projects
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/clients"
+      routerLinkActive="active-link">
+
+      Clients
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/departments"
+      routerLinkActive="active-link">
+
+      Departments
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/employees"
+      routerLinkActive="active-link">
+
+      Employees
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/attendance"
+      routerLinkActive="active-link">
+
+      Attendance
+
+    </a>
+
+    <a
+      *ngIf="isEmployee() || isManager()"
+      mat-list-item
+      routerLink="/my-attendance"
+      routerLinkActive="active-link">
+
+      My Attendance
+
+    </a>
+
+    <a
+      *ngIf="isAdmin() || isManager()"
+      mat-list-item
+      routerLink="/attendance-report"
+      routerLinkActive="active-link">
+
+      Reports
+
+    </a>
+
+    <a
+      *ngIf="
         isAdmin() ||
-        isManager()
-    " mat-list-item routerLink="/clients">
+        isManager() ||
+        isEmployee()
+      "
+      mat-list-item
+      routerLink="/leave-management"
+      routerLinkActive="active-link">
 
-    Clients
+      Leave Management
 
-  </a>
+    </a>
 
-  <a mat-list-item routerLink="/departments" *ngIf="
-    isAdmin()
-    || isManager()
-  ">
+    <a
+      *ngIf="
+        isAdmin() ||
+        isManager() ||
+        isEmployee()
+      "
+      mat-list-item
+      routerLink="/announcements"
+      routerLinkActive="active-link">
 
-    Departments
+      Announcements
 
-  </a>
+    </a>
 
-  <a *ngIf="isAdmin() || isManager()" mat-list-item routerLink="/employees">
+    <a
+      *ngIf="isAdmin()"
+      mat-list-item
+      routerLink="/audit-logs"
+      routerLinkActive="active-link">
 
-    Employees
+      Audit Logs
 
-  </a>
+    </a>
 
-  <a *ngIf="isAdmin() || isManager()" mat-list-item routerLink="/attendance">
+    <a
+      mat-list-item
+      routerLink="/profile"
+      routerLinkActive="active-link">
 
-    Attendance
+      Profile
 
-  </a>
+    </a>
 
-  <a *ngIf="isEmployee() || isManager()" mat-list-item routerLink="/my-attendance">
+  </mat-nav-list>
 
-    My Attendance
-
-  </a>
-
-  <a *ngIf="
-    isAdmin() ||
-    isManager()
-  " mat-list-item routerLink="/attendance-report">
-
-    Attendance Report
-
-  </a>
-
-  <a *ngIf="
-    isAdmin() ||
-    isManager() ||
-    isEmployee()
-  " mat-list-item routerLink="/leave-management">
-
-    Leave Management
-
-  </a>
-
-
-
-  <a *ngIf="
-    isAdmin() ||
-    isManager() ||
-    isEmployee()" mat-list-item routerLink="/announcements">
-
-    Announcements
-
-  </a>
-
-  <a *ngIf="
-        isAdmin()
-    " mat-list-item routerLink="/audit-logs">
-
-    Audit Logs
-
-  </a>
-
-  <a mat-list-item routerLink="/profile">
-
-    Profile
-
-  </a>
-
-
-
-
-
-</mat-nav-list>
+</div>

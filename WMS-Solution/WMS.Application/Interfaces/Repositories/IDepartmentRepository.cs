@@ -1,14 +1,10 @@
 ﻿using WMS.Domain.Entities;
 
-namespace WMS.Application
-.Interfaces.Repositories;
+namespace WMS.Application.Interfaces.Repositories;
 
-public interface
-    IDepartmentRepository
+public interface IDepartmentRepository
 {
-    Task<IEnumerable<Department>>
-        GetAllAsync();
+    Task<IEnumerable<Department>> GetAllAsync();
 
-    Task AddAsync(
-        Department department);
+    Task AddAsync( Department department);
 }

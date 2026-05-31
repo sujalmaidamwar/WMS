@@ -1,7 +1,107 @@
-mat-nav-list {
-  width: 250px;
+.sidebar-container {
+
+  height: 100%;
+
+  background: #ffffff;
+
+  padding: 16px;
 }
 
-a {
+/* Header */
+
+.sidebar-header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  margin-bottom: 24px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sidebar-logo {
+
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-weight: 700;
+
+  font-size: 18px;
+}
+
+.sidebar-title h3 {
+
+  margin: 0;
+
+  color: #1e293b;
+
   font-size: 16px;
+}
+
+.sidebar-title span {
+
+  font-size: 12px;
+
+  color: #64748b;
+}
+
+/* Navigation */
+
+.mat-mdc-nav-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.mat-mdc-list-item {
+
+  border-radius: 10px !important;
+
+  margin-bottom: 4px;
+
+  transition: all 0.2s ease;
+}
+
+.mat-mdc-list-item:hover {
+
+  background: #f1f5f9;
+}
+
+/* Active Route */
+
+.active-link {
+
+  background: #eff6ff !important;
+
+  color: #2563eb !important;
+
+  font-weight: 600;
+}
+
+/* Better spacing */
+
+a[mat-list-item] {
+
+  font-size: 14px;
 }

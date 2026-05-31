@@ -3,30 +3,27 @@ using WMS.Application.Interfaces.Repositories;
 using WMS.Application.Interfaces.Services;
 using WMS.Domain.Entities;
 using BCrypt.Net;
-using WMS.Application
-.DTOs.AuditLog;
+using WMS.Application.DTOs.AuditLog;
 
 namespace WMS.Application.Services.Employee
 {
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IAuditLogService _auditLogService;
+        private readonly IUserRepository _userRepository;
 
-        private readonly
-    IAuditLogService
-        _auditLogService;
-        private readonly
-    IUserRepository
-        _userRepository;
-
-        public EmployeeService(IEmployeeRepository employeeRepository, IUserRepository userRepository,IAuditLogService auditLogService)
+        public EmployeeService(
+            IEmployeeRepository employeeRepository,
+            IUserRepository userRepository,
+            IAuditLogService auditLogService)
         {
             _employeeRepository = employeeRepository;
             _userRepository = userRepository;
             _auditLogService = auditLogService;
         }
 
-        
+
 
         public async Task<IEnumerable<EmployeeDto>> GetAllAsync()
         {
@@ -40,16 +37,19 @@ namespace WMS.Application.Services.Employee
                 Email = e.Email,
                 PhoneNumber = e.PhoneNumber,
                 DepartmentId = e.DepartmentId,
-                Role =
-    e.User != null
-        ? e.User.Role
-        : null,
-                DepartmentName = e.Department != null ? e.Department.DepartmentName : null,
+                Role = e.User != null
+                    ? e.User.Role
+                    : null,
+                DepartmentName = e.Department != null
+                    ? e.Department.DepartmentName
+                    : null,
                 DOB = e.DOB,
                 DOJ = e.DOJ,
                 Status = e.Status,
             });
         }
+
+
 
         public async Task<EmployeeDto> GetByIdAsync(int id)
         {
@@ -65,13 +65,10 @@ namespace WMS.Application.Services.Employee
                 LastName = employee.LastName,
                 Email = employee.Email,
                 PhoneNumber = employee.PhoneNumber,
-                DepartmentId =
-        employee.DepartmentId,
-
-                DepartmentName =
-        employee.Department != null
-            ? employee.Department.DepartmentName
-            : null,
+                DepartmentId = employee.DepartmentId,
+                DepartmentName = employee.Department != null
+                    ? employee.Department.DepartmentName
+                    : null,
                 DOB = employee.DOB,
                 DOJ = employee.DOJ,
                 Status = employee.Status
@@ -86,56 +83,38 @@ namespace WMS.Application.Services.Employee
                 LastName = employeeDto.LastName,
                 Email = employeeDto.Email,
                 PhoneNumber = employeeDto.PhoneNumber,
-                DepartmentId =
-    employeeDto.DepartmentId,
+                DepartmentId = employeeDto.DepartmentId,
                 DOB = employeeDto.DOB,
                 DOJ = employeeDto.DOJ,
                 Status = employeeDto.Status
             };
 
             await _employeeRepository.AddAsync(employee);
-            var user =
-    new User
-    {
-        Username =
-            employeeDto.Email,
 
-        Password =
+            var user = new User
+            {
+                Username = employeeDto.Email,
 
-            BCrypt.Net.BCrypt
-                .HashPassword(
+                Password =
+                    BCrypt.Net.BCrypt.HashPassword(
+                        employeeDto.FirstName + "@123"
+                    ),
 
-                    employeeDto
-                        .FirstName
-                    + "@123"
-                ),
+                Role = employeeDto.Role,
+                EmployeeId = employee.EmployeeId
+            };
 
-        Role = employeeDto.Role,
-        EmployeeId = employee.EmployeeId
+            await _userRepository.AddUserAsync(user);
 
-    };
-
-            await _userRepository
-                .AddUserAsync(user);
-
-            await _auditLogService
-    .AddAsync(
-
-        new AuditLogDto
-        {
-            Action =
-                "Add",
-
-            EntityName =
-                "Employee",
-
-            Description =
-                $"Added employee: {employee.FirstName}",
-
-            PerformedBy =
-                "Admin"
-        }
-    );
+            await _auditLogService.AddAsync(
+                new AuditLogDto
+                {
+                    Action = "Add",
+                    EntityName = "Employee",
+                    Description = $"Added employee: {employee.FirstName}",
+                    PerformedBy = "Admin"
+                }
+            );
         }
 
         public async Task UpdateAsync(EmployeeDto employeeDto)
@@ -155,112 +134,76 @@ namespace WMS.Application.Services.Employee
             employee.Status = employeeDto.Status;
 
             await _employeeRepository.UpdateAsync(employee);
-            await _auditLogService
-    .AddAsync(
 
-        new AuditLogDto
-        {
-            Action =
-                "Update",
-
-            EntityName =
-                "Employee",
-
-            Description =
-                $"Added employee: {employee.FirstName}",
-
-            PerformedBy =
-                "Admin"
-        }
-    );
+            await _auditLogService.AddAsync(
+                new AuditLogDto
+                {
+                    Action = "Update",
+                    EntityName = "Employee",
+                    Description = $"Added employee: {employee.FirstName}",
+                    PerformedBy = "Admin"
+                }
+            );
         }
 
         public async Task DeleteAsync(int id)
         {
-            var user =
-    await _userRepository
-        .GetByEmployeeId(id);
+            var user = await _userRepository.GetByEmployeeId(id);
 
             if (user != null)
             {
-                await _userRepository
-                    .DeleteUserAsync(user.UserId);
+                await _userRepository.DeleteUserAsync(user.UserId);
             }
 
-            await _employeeRepository
-                .DeleteAsync(id);
-            await _auditLogService
-    .AddAsync(
+            await _employeeRepository.DeleteAsync(id);
 
-        new AuditLogDto
-        {
-            Action =
-                "Add",
-
-            EntityName =
-                "Employee",
-
-            Description =
-                $"Deleted Employee with ID: {id}",
-
-            PerformedBy =
-                "Admin"
-        }
-    );
+            await _auditLogService.AddAsync(
+                new AuditLogDto
+                {
+                    Action = "Add",
+                    EntityName = "Employee",
+                    Description = $"Deleted Employee with ID: {id}",
+                    PerformedBy = "Admin"
+                }
+            );
         }
 
-        public async Task<IEnumerable<EmployeeDto>>
-    GetEmployeesOnlyAsync()
+
+
+        public async Task<IEnumerable<EmployeeDto>> GetEmployeesOnlyAsync()
         {
             var employees =
-                await _employeeRepository
-                    .GetAllAsync();
+                await _employeeRepository.GetAllAsync();
 
             return employees
-
                 .Where(e =>
-
                     e.User != null &&
-
-                    e.User.Role == "Employee"
-                )
-
+                    e.User.Role == "Employee")
                 .Select(e => new EmployeeDto
                 {
                     EmployeeId = e.EmployeeId,
-
                     FirstName = e.FirstName,
-
                     LastName = e.LastName,
-
                     Role = e.User.Role
                 });
         }
 
-        public async Task<IEnumerable<EmployeeDto>>
-    GetManagersOnlyAsync()
+
+
+        public async Task<IEnumerable<EmployeeDto>> GetManagersOnlyAsync()
         {
             var managers =
-                await _employeeRepository
-                    .GetAllAsync();
+                await _employeeRepository.GetAllAsync();
 
             return managers
-
                 .Where(e =>
-
                     e.User != null &&
-
-                    e.User.Role == "Manager"
-                )
-
+                    e.User.Role == "Manager")
                 .Select(e => new EmployeeDto
                 {
                     EmployeeId = e.EmployeeId,
-
                     FirstName = e.FirstName,
-
                     LastName = e.LastName,
-
                     Role = e.User.Role
                 });
         }

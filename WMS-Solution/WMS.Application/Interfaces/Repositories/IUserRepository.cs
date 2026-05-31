@@ -1,17 +1,12 @@
 ﻿using WMS.Domain.Entities;
 
-namespace WMS.Application
-.Interfaces.Repositories;
+namespace WMS.Application.Interfaces.Repositories;
 
-public interface
-    IUserRepository
+public interface IUserRepository
 {
-    Task AddUserAsync(
-        User user);
+    Task AddUserAsync( User user);
 
-    Task<User?>
-    GetByUsernameAsync(
-        string username);
+    Task<User?> GetByUsernameAsync( string username);
 
     Task<User?> GetByEmployeeId(int employeeId);
 

@@ -1,13 +1,140 @@
 .project-container {
 
-  padding: 20px;
+  padding: 24px;
+
+  background: #f8fafc;
+
+  min-height: 100vh;
 }
 
-mat-card {
+.project-card,
+.table-card {
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  margin-bottom: 24px;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.08);
+}
+
+/* Header */
+
+.header-section {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 24px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-icon {
+
+  width: 70px;
+
+  height: 70px;
+
+  border-radius: 18px;
+
+  background: #eff6ff;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 32px;
+}
+
+.header-content h1 {
+
+  margin: 0;
+
+  color: #1e293b;
+
+  font-size: 30px;
+}
+
+.header-content p {
+
+  margin-top: 6px;
+
+  color: #64748b;
+}
+
+/* Form */
+
+.form-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 18px;
+}
+
+.full-width {
+
+  width: 100%;
+}
+
+.button-section {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 20px;
+}
+
+.button-section button {
+
+  min-width: 180px;
+
+  height: 44px;
+}
+
+/* Table */
+
+.table-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
 
   margin-bottom: 20px;
+}
 
-  padding: 20px;
+.table-header h2 {
+
+  margin: 0;
+
+  color: #1e293b;
+}
+
+.table-header span {
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.table-container {
+
+  overflow-x: auto;
 }
 
 table {
@@ -15,12 +142,45 @@ table {
   width: 100%;
 }
 
-form {
+.mat-mdc-header-row {
 
-  display: grid;
+  background: #f1f5f9;
+}
 
-  grid-template-columns:
-    repeat(2, 1fr);
+.mat-mdc-header-cell {
 
-  gap: 20px;
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.mat-mdc-row:hover {
+
+  background: #f8fafc;
+
+  transition: .2s;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .project-container {
+
+    padding: 16px;
+  }
+
+  .table-header {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .button-section button {
+
+    width: 100%;
+  }
 }

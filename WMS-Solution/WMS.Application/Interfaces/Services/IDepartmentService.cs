@@ -2,12 +2,9 @@
 
 namespace WMS.Application.Interfaces.Services;
 
-public interface
-    IDepartmentService
+public interface IDepartmentService
 {
-    Task<IEnumerable<DepartmentDto>>
-        GetAllDepartmentsAsync();
+    Task<IEnumerable<DepartmentDto>>  GetAllDepartmentsAsync();
 
-    Task AddDepartmentAsync(
-        DepartmentDto departmentDto);
+    Task AddDepartmentAsync( DepartmentDto departmentDto);
 }

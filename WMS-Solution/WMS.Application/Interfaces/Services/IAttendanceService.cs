@@ -4,29 +4,15 @@ namespace WMS.Application.Interfaces.Services;
 
 public interface IAttendanceService
 {
-    Task<IEnumerable<AttendanceDto>>
-        GetAllAttendanceAsync();
+    Task<IEnumerable<AttendanceDto>> GetAllAttendanceAsync();
 
-    Task AddAttendanceAsync(
-        AttendanceDto attendanceDto);
+    Task AddAttendanceAsync( AttendanceDto attendanceDto);
 
-    Task<IEnumerable<AttendanceDto>>
-    GetAttendanceByEmployeeId(
-        int employeeId);
+    Task<IEnumerable<AttendanceDto>> GetAttendanceByEmployeeId( int employeeId);
 
-    Task<IEnumerable<AttendanceDto>>
-GetAttendanceByMonth(
+    Task<IEnumerable<AttendanceDto>> GetAttendanceByMonth(int employeeId, int month, int year);
 
-    int employeeId,
+    Task CheckInAsync(int employeeId, string workMode);
 
-    int month,
-
-    int year);
-
-    Task CheckInAsync(
-    int employeeId,
-    string workMode);
-
-    Task CheckOutAsync(
-        int employeeId);
+    Task CheckOutAsync( int employeeId);
 }

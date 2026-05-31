@@ -17,25 +17,18 @@ namespace WMS.Infrastructure.Repositories.Employee
         public async Task<IEnumerable<WMS.Domain.Entities.Employee>> GetAllAsync()
         {
             return await _context.Employees
-
-    .Include(e => e.Department)
-
-    .Include(e => e.User)
-
-    .ToListAsync();
+                .Include(e => e.Department)
+                .Include(e => e.User)
+                .ToListAsync();
         }
 
         public async Task<WMS.Domain.Entities.Employee> GetByIdAsync(int id)
         {
             return await _context.Employees
-
-    .Include(e => e.Department)
-
-    .Include(e => e.User)
-
-    .FirstOrDefaultAsync(
-        e => e.EmployeeId == id
-    );
+                .Include(e => e.Department)
+                .Include(e => e.User)
+                .FirstOrDefaultAsync( e => e.EmployeeId == id
+                );
 
         }
 

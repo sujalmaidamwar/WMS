@@ -1,36 +1,84 @@
 <div class="login-container">
 
+  <div class="overlay"></div>
+
   <mat-card class="login-card">
 
-    <h2>Workforce Management System</h2>
+    <div class="login-header">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="logo-container">
 
-      <mat-form-field appearance="outline" class="full-width">
+        <div class="logo-icon">
+          👥
+        </div>
 
-        <mat-label>Username</mat-label>
+      </div>
 
-        <input matInput formControlName="username">
+      <h2>
+        Workforce Management System
+      </h2>
+
+      
+
+    </div>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin()">
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>
+          Username
+        </mat-label>
+
+        <input
+          matInput
+          formControlName="username">
+
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
 
-        <mat-label>Password</mat-label>
+        <mat-label>
+          Password
+        </mat-label>
 
-        <input matInput type="password" formControlName="password">
+        <input
+          matInput
+          type="password"
+          formControlName="password">
+
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="full-width">
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width login-btn">
 
-        Login
+        Sign In
+
       </button>
 
-      <p class="error-message" *ngIf="errorMessage">
+      <p
+        class="error-message"
+        *ngIf="errorMessage">
 
         {{ errorMessage }}
+
       </p>
 
     </form>
+
+    <div class="footer-text">
+
+      Workforce Management System © 2026
+
+    </div>
 
   </mat-card>
 

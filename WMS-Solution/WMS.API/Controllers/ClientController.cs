@@ -1,52 +1,41 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-
 using Microsoft.AspNetCore.Mvc;
-
 using WMS.Application.DTOs.Client;
-
 using WMS.Application.Interfaces.Services;
 
 namespace WMS.API.Controllers
 {
+
     [ApiController]
-
     [Route("api/[controller]")]
-
     [Authorize]
-    public class ClientController
-        : ControllerBase
+    public class ClientController : ControllerBase
     {
-        private readonly IClientService
-            _clientService;
+        private readonly IClientService _clientService;
 
-        public ClientController(
-            IClientService clientService
-        )
+        public ClientController(IClientService clientService)
         {
-            _clientService =
-                clientService;
+            _clientService = clientService;
         }
+
+
 
         [HttpGet]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult>
-            GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var clients =
-                await _clientService
-                    .GetAllAsync();
+            var clients = await _clientService.GetAllAsync();
 
             return Ok(clients);
         }
 
+
+
         [HttpGet("{id}")]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult>
-            GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var client =
-                await _clientService
-                    .GetByIdAsync(id);
+            var client = await _clientService.GetByIdAsync(id);
 
             if (client == null)
             {
@@ -56,55 +45,45 @@ namespace WMS.API.Controllers
             return Ok(client);
         }
 
-        [HttpPost]
 
+
+        [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult>
-            Add(
-                ClientDto clientDto
-            )
+        public async Task<IActionResult> Add(ClientDto clientDto)
         {
-            await _clientService
-                .AddAsync(clientDto);
+            await _clientService.AddAsync(clientDto);
 
             return Ok(new
             {
-                message =
-        "Client Added Successfully"
+                message = "Client Added Successfully"
             });
         }
+
+
 
         [HttpPut]
-
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult>
-            Update(
-                ClientDto clientDto
-            )
+        public async Task<IActionResult> Update(ClientDto clientDto)
         {
-            await _clientService
-                .UpdateAsync(clientDto);
+            await _clientService.UpdateAsync(clientDto);
 
             return Ok(new
             {
-                message =
-        "Client Updated Successfully"
+                message = "Client Updated Successfully"
             });
         }
 
-        [HttpDelete("{id}")]
 
+
+        [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult>
-            Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await _clientService
-                .DeleteAsync(id);
+            await _clientService.DeleteAsync(id);
 
             return Ok(new
             {
-                message =
-        "Client Deleted Successfully"
+                message = "Client Deleted Successfully"
             });
         }
     }

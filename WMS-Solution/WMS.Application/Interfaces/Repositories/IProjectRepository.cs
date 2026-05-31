@@ -1,14 +1,10 @@
 ﻿using WMS.Domain.Entities;
 
-namespace WMS.Application
-.Interfaces.Repositories;
+namespace WMS.Application.Interfaces.Repositories;
 
-public interface
-    IProjectRepository
+public interface IProjectRepository
 {
-    Task<IEnumerable<Project>>
-        GetAllAsync();
+    Task<IEnumerable<Project>> GetAllAsync();
 
-    Task AddAsync(
-        Project project);
+    Task AddAsync(  Project project);
 }

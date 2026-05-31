@@ -2,16 +2,23 @@
 
   <mat-card class="report-card">
 
+    <!-- Header -->
+
     <div class="header-section">
 
-      <h1>
-        Attendance Report
-      </h1>
+      
 
-      <p>
-        Generate monthly attendance reports
-        and export as PDF.
-      </p>
+      <div class="header-content">
+
+        <h1>
+          Attendance Reports
+        </h1>
+
+        <p>
+          Generate monthly attendance reports and export them as PDF documents.
+        </p>
+
+      </div>
 
     </div>
 
@@ -19,28 +26,19 @@
 
     <div class="filter-section">
 
-      <!-- Month -->
-
       <mat-form-field appearance="outline">
 
         <mat-label>
           Month
         </mat-label>
 
-        <mat-select [(ngModel)]="
-            selectedMonth
-          ">
+        <mat-select [(ngModel)]="selectedMonth">
 
-          <mat-option *ngFor="
-              let month
-              of months
-            " [value]="
-              month.value
-            ">
+          <mat-option
+            *ngFor="let month of months"
+            [value]="month.value">
 
-            {{
-            month.name
-            }}
+            {{ month.name }}
 
           </mat-option>
 
@@ -48,17 +46,16 @@
 
       </mat-form-field>
 
-      <!-- Year -->
-
       <mat-form-field appearance="outline">
 
         <mat-label>
           Year
         </mat-label>
 
-        <input matInput type="number" [(ngModel)]="
-            selectedYear
-          ">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="selectedYear">
 
       </mat-form-field>
 
@@ -76,132 +73,139 @@
 
           </mat-option>
 
-          <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+          <mat-option
+            *ngFor="let employee of employees"
+            [value]="employee.employeeId">
 
-            {{
-            employee.firstName
-            }}
-
-            {{
-            employee.lastName
-            }}
+            {{ employee.firstName }}
+            {{ employee.lastName }}
 
           </mat-option>
 
         </mat-select>
 
       </mat-form-field>
-      <!-- Generate -->
 
-      <button mat-raised-button color="primary" (click)="
-          loadReport()
-        ">
+      <div class="action-buttons">
 
-        Generate Report
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="loadReport()">
 
-      </button>
+          Generate Report
 
-      <!-- Export -->
+        </button>
 
-      <button mat-raised-button color="accent" (click)="
-          exportPDF()
-        ">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="exportPDF()">
 
-        Export PDF
+          Export PDF
 
-      </button>
+        </button>
+
+      </div>
 
     </div>
 
-    <!-- Table -->
+    <!-- Report Table -->
 
-    <table mat-table [dataSource]="
-        attendanceList
-      " class="mat-elevation-z2">
+    <div class="table-container">
 
-      <!-- Employee -->
+      <table
+        mat-table
+        [dataSource]="attendanceList">
 
-      <ng-container matColumnDef="employeeId">
+        <!-- Employee -->
 
-        <th mat-header-cell *matHeaderCellDef>
+        <ng-container matColumnDef="employeeId">
 
-          Employee ID
+          <th mat-header-cell *matHeaderCellDef>
 
-        </th>
+            Employee ID
 
-        <td mat-cell *matCellDef="
-            let row
-          ">
+          </th>
 
-          {{
-          row.employeeId
-          }}
+          <td mat-cell *matCellDef="let row">
 
-        </td>
+            {{ row.employeeId }}
 
-      </ng-container>
+          </td>
 
-      <!-- Date -->
+        </ng-container>
 
-      <ng-container matColumnDef="attendanceDate">
+        <!-- Date -->
 
-        <th mat-header-cell *matHeaderCellDef>
+        <ng-container matColumnDef="attendanceDate">
 
-          Date
+          <th mat-header-cell *matHeaderCellDef>
 
-        </th>
+            Date
 
-        <td mat-cell *matCellDef="let row">
+          </th>
 
-          {{
-          row.attendanceDate
-          | date
-          }}
+          <td mat-cell *matCellDef="let row">
 
-        </td>
+            {{ row.attendanceDate | date:'dd MMM yyyy' }}
 
-      </ng-container>
+          </td>
 
-      <!-- Status -->
+        </ng-container>
 
-      <ng-container matColumnDef="status">
+        <!-- Status -->
 
-        <th mat-header-cell *matHeaderCellDef>
+        <ng-container matColumnDef="status">
 
-          Status
+          <th mat-header-cell *matHeaderCellDef>
 
-        </th>
+            Status
 
-        <td mat-cell *matCellDef="let row
-          ">
+          </th>
 
-          {{
-          row.status
-          }}
+          <td mat-cell *matCellDef="let row">
 
-        </td>
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'present': row.status === 'Present',
+                'absent': row.status === 'Absent',
+                'leave': row.status === 'Leave'
+              }">
 
-      </ng-container>
+              {{ row.status }}
 
-      <tr mat-header-row *matHeaderRowDef="[
-          'employeeId',
-          'attendanceDate',
-          'status'
-        ]">
-      </tr>
+            </span>
 
-      <tr mat-row *matRowDef="
-          let row;
+          </td>
 
-          columns: [
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="[
             'employeeId',
             'attendanceDate',
             'status'
-          ]
-        ">
-      </tr>
+          ]">
+        </tr>
 
-    </table>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: [
+              'employeeId',
+              'attendanceDate',
+              'status'
+            ]
+          ">
+        </tr>
+
+      </table>
+
+    </div>
 
   </mat-card>
 

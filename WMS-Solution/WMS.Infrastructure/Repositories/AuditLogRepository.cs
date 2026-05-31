@@ -1,53 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
-using WMS.Application
-.Interfaces.Repositories;
-
+using WMS.Application.Interfaces.Repositories;
 using WMS.Domain.Entities;
-
 using WMS.Infrastructure.Data;
 
 namespace WMS.Infrastructure.Repositories
 {
-    public class AuditLogRepository
-        : IAuditLogRepository
+    public class AuditLogRepository : IAuditLogRepository
     {
-        private readonly
-            ApplicationDbContext
-                _context;
+        private readonly ApplicationDbContext _context;
 
-        public AuditLogRepository(
-            ApplicationDbContext context
-        )
+        public AuditLogRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<
-            IEnumerable<AuditLog>
-        >
-        GetAllAsync()
+        public async Task<IEnumerable<AuditLog>> GetAllAsync()
         {
-            return await
-                _context.AuditLogs
-
-                .OrderByDescending(
-                    a => a.PerformedOn
-                )
-
+            return await _context.AuditLogs
+                .OrderByDescending(a => a.PerformedOn)
                 .ToListAsync();
         }
 
-        public async Task AddAsync(
-            AuditLog auditLog
-        )
+        public async Task AddAsync(AuditLog auditLog)
         {
-            await _context
-                .AuditLogs
-                .AddAsync(auditLog);
-
-            await _context
-                .SaveChangesAsync();
+            await _context.AuditLogs.AddAsync(auditLog);
+            await _context.SaveChangesAsync();
         }
     }
 }

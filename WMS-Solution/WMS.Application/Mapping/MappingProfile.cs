@@ -12,9 +12,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Employee, EmployeeDto>()
-
-    .ForMember(
+        CreateMap<Employee, EmployeeDto>().ForMember(
 
         dest => dest.DepartmentName,
 
@@ -23,19 +21,13 @@ public class MappingProfile : Profile
             src.Department!
                 .DepartmentName
         )
-    )
-
-    .ReverseMap();
+    ).ReverseMap();
 
         CreateMap<Attendance, AttendanceDto>()
             .ReverseMap();
 
-        CreateMap<LeaveRequest, LeaveRequestDto>()
-    .ReverseMap();
+        CreateMap<LeaveRequest, LeaveRequestDto>().ReverseMap();
 
-        CreateMap<
-    Department,
-    DepartmentDto>()
-    .ReverseMap();
+        CreateMap<Department,DepartmentDto>().ReverseMap();
     }
 }

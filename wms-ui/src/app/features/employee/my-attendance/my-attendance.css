@@ -1,6 +1,76 @@
 .attendance-container {
 
-  padding: 20px;
+  padding: 24px;
+
+  background: #f8fafc;
+
+  min-height: 100vh;
+}
+
+.attendance-card {
+
+  padding: 24px;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+
+.header-section {
+
+  margin-bottom: 24px;
+
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-content h1 {
+
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 600;
+
+  color: #1e293b;
+}
+
+.header-content p {
+
+  margin-top: 6px;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+/* Buttons */
+
+.button-group {
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-bottom: 24px;
+}
+
+.button-group button {
+
+  min-width: 140px;
+
+  height: 44px;
+}
+
+/* Table */
+
+.table-container {
+
+  overflow-x: auto;
 }
 
 table {
@@ -8,13 +78,90 @@ table {
   width: 100%;
 }
 
-mat-card {
+.mat-mdc-header-row {
 
-  padding: 20px;
+  background: #f1f5f9;
 }
 
-button-group{
-  padding: 20px;
-  gap: 15px;
+.mat-mdc-header-cell {
+
+  font-weight: 600;
+
+  color: #334155;
 }
 
+.mat-mdc-row:hover {
+
+  background: #f8fafc;
+}
+
+/* Status */
+
+.status-badge {
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.present {
+
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.absent {
+
+  background: #fee2e2;
+
+  color: #b91c1c;
+}
+
+.leave {
+
+  background: #fef3c7;
+
+  color: #b45309;
+}
+
+/* Work Mode */
+
+.mode-badge {
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #dbeafe;
+
+  color: #1d4ed8;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .attendance-container {
+
+    padding: 16px;
+  }
+
+  .button-group {
+
+    flex-direction: column;
+  }
+
+  .button-group button {
+
+    width: 100%;
+  }
+}

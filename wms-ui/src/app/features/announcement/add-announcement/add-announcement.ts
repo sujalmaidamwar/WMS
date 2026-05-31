@@ -7,6 +7,7 @@ import {
 } from '@angular/common';
 
 
+
 import {
   FormBuilder,
   FormGroup,
@@ -131,5 +132,9 @@ AddAnnouncement
           );
         }
       });
+  }
+
+  onCancel() :void{
+    this.router.navigate(['/announcements'] );
   }
 }

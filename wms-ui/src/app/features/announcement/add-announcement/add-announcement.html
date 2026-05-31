@@ -4,73 +4,74 @@
 
     <div class="header-section">
 
-      <h1>
-        Add Announcement
-      </h1>
+      <div class="header-icon">
+      </div>
 
-      <p>
-        Create organization-wide announcements
-        for employees and managers.
-      </p>
+      <div class="header-content">
+
+        <h1>
+          Create Announcement
+        </h1>
+
+        <p>
+          Publish important updates and notifications
+          for employees and managers across the organization.
+        </p>
+
+      </div>
 
     </div>
 
     <form
       [formGroup]="announcementForm"
-
       (ngSubmit)="onSubmit()">
 
-      <!-- Title -->
+      <div class="form-section">
 
-      <mat-form-field appearance="outline"
-        class="full-width">
+        <mat-form-field
+          appearance="outline"
+          class="full-width">
 
-        <mat-label>
-          Announcement Title
-        </mat-label>
+          <mat-label>
+            Announcement Title
+          </mat-label>
 
-        <input
-          matInput
-          placeholder="Enter announcement title"
-          formControlName="title">
+          <input
+            matInput
+            placeholder="Enter announcement title"
+            formControlName="title">
 
-      </mat-form-field>
+        </mat-form-field>
 
-      <!-- Message -->
+        <mat-form-field
+          appearance="outline"
+          class="full-width">
 
-      <mat-form-field
-        appearance="outline"
-        class="full-width">
+          <mat-label>
+            Announcement Message
+          </mat-label>
 
-        <mat-label>
-          Announcement Message
-        </mat-label>
+          <textarea
+            matInput
+            rows="6"
+            placeholder="Write announcement details here..."
+            formControlName="message">
+          </textarea>
 
-        <textarea
-          matInput
-          rows="6"
+        </mat-form-field>
 
-          placeholder="Enter announcement details"
+        <div class="checkbox-section">
 
-          formControlName="message">
-        </textarea>
+          <mat-checkbox
+            formControlName="isActive">
 
-      </mat-form-field>
+            Publish Immediately
 
-      <!-- Status -->
+          </mat-checkbox>
 
-      <div class="checkbox-section">
-
-        <mat-checkbox
-          formControlName="isActive">
-
-          Active Announcement
-
-        </mat-checkbox>
+        </div>
 
       </div>
-
-      <!-- Buttons -->
 
       <div class="button-section">
 
@@ -84,10 +85,7 @@
         </button>
 
         <button
-          mat-stroked-button
-          color="warn"
-          routerLink="/announcements"
-          type="button">
+          mat-stroked-button type="button" (click)="onCancel()">
 
           Cancel
 

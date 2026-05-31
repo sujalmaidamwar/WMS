@@ -6,19 +6,15 @@ namespace WMS.Application.Interfaces.Services;
 
 public interface ILeaveRequestService
 {
-    Task<IEnumerable<LeaveRequestDto>>
-        GetAllLeaveRequestsAsync();
+    Task<IEnumerable<LeaveRequestDto>> GetAllLeaveRequestsAsync();
 
-    Task AddLeaveRequestAsync(
-        LeaveRequestDto leaveRequestDto);
+    Task AddLeaveRequestAsync( LeaveRequestDto leaveRequestDto);
 
     Task ApproveLeaveAsync(int id);
 
     Task RejectLeaveAsync(int id);
 
-    Task<IEnumerable<LeaveRequestDto>>
-    GetLeavesByEmployeeId(
-        int employeeId);
+    Task<IEnumerable<LeaveRequestDto>> GetLeavesByEmployeeId( int employeeId);
 
     Task DeleteLeaveAsync(int id);
 }

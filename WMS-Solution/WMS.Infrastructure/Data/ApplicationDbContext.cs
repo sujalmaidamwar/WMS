@@ -10,13 +10,13 @@ namespace WMS.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-
-        }
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        { }
 
         protected override void OnModelCreating(
-    ModelBuilder modelBuilder)
+            ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -31,8 +31,6 @@ namespace WMS.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(l => l.EmployeeId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
         }
 
         public DbSet<Employee> Employees { get; set; }
@@ -51,16 +49,8 @@ namespace WMS.Infrastructure.Data
 
         public DbSet<Announcement> Announcements { get; set; }
 
-        public DbSet<Client> Clients
-        {
-            get;
-            set;
-        }
+        public DbSet<Client> Clients { get; set;}
 
-        public DbSet<AuditLog> AuditLogs
-        {
-            get;
-            set;
-        }
+        public DbSet<AuditLog> AuditLogs { get; set; }
     }
 }

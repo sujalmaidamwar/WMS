@@ -4,91 +4,98 @@
 
         <div class="header-section">
 
-            <h1>
-                Edit Client
-            </h1>
+            <div class="header-icon">
+                ✏️
+            </div>
 
-            <p>
-                Update client information
-                and business details.
-            </p>
+            <div class="header-content">
+
+                <h1>
+                    Edit Client
+                </h1>
+
+                <p>
+                    Update client information and business details.
+                </p>
+
+            </div>
 
         </div>
 
         <form
+            class="client-form"
             [formGroup]="clientForm"
-
             (ngSubmit)="onSubmit()">
 
+            <div class="form-grid">
+
+                <!-- Client Name -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>
+                        Client Name
+                    </mat-label>
+
+                    <input
+                        matInput
+                        placeholder="Enter client name"
+                        formControlName="clientName">
+
+                </mat-form-field>
+
+                <!-- Company Name -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>
+                        Company Name
+                    </mat-label>
+
+                    <input
+                        matInput
+                        placeholder="Enter company name"
+                        formControlName="companyName">
+
+                </mat-form-field>
+
+                <!-- Email -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>
+                        Email Address
+                    </mat-label>
+
+                    <input
+                        matInput
+                        type="email"
+                        placeholder="client@company.com"
+                        formControlName="email">
+
+                </mat-form-field>
+
+                <!-- Phone -->
+
+                <mat-form-field appearance="outline">
+
+                    <mat-label>
+                        Phone Number
+                    </mat-label>
+
+                    <input
+                        matInput
+                        placeholder="+91 XXXXX XXXXX"
+                        formControlName="phoneNumber">
+
+                </mat-form-field>
+
+            </div>
+
+            <!-- Address -->
+
             <mat-form-field
                 appearance="outline"
-
-                class="full-width">
-
-                <mat-label>
-                    Client Name
-                </mat-label>
-
-                <input
-                    matInput
-
-                    formControlName="clientName">
-
-            </mat-form-field>
-
-            <mat-form-field
-                appearance="outline"
-
-                class="full-width">
-
-                <mat-label>
-                    Company Name
-                </mat-label>
-
-                <input
-                    matInput
-
-                    formControlName="companyName">
-
-            </mat-form-field>
-
-            <mat-form-field
-                appearance="outline"
-
-                class="full-width">
-
-                <mat-label>
-                    Email
-                </mat-label>
-
-                <input
-                    matInput
-
-                    type="email"
-
-                    formControlName="email">
-
-            </mat-form-field>
-
-            <mat-form-field
-                appearance="outline"
-
-                class="full-width">
-
-                <mat-label>
-                    Phone Number
-                </mat-label>
-
-                <input
-                    matInput
-
-                    formControlName="phoneNumber">
-
-            </mat-form-field>
-
-            <mat-form-field
-                appearance="outline"
-
                 class="full-width">
 
                 <mat-label>
@@ -97,17 +104,19 @@
 
                 <textarea
                     matInput
-
                     rows="4"
-
+                    placeholder="Enter complete address"
                     formControlName="address">
                 </textarea>
 
             </mat-form-field>
 
+            <!-- Status -->
+
             <div class="checkbox-section">
 
-                <mat-checkbox formControlName="isActive">
+                <mat-checkbox
+                    formControlName="isActive">
 
                     Active Client
 
@@ -115,12 +124,13 @@
 
             </div>
 
+            <!-- Buttons -->
+
             <div class="button-section">
 
                 <button
                     mat-raised-button
                     color="primary"
-
                     type="submit">
 
                     Update Client
@@ -129,10 +139,7 @@
 
                 <button
                     mat-stroked-button
-                    color="warn"
-
                     type="button"
-
                     routerLink="/clients">
 
                     Cancel

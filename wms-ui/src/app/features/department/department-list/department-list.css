@@ -1,13 +1,150 @@
 .department-container {
 
-  padding: 20px;
+  padding: 24px;
+
+  background: #f8fafc;
+
+  min-height: 100vh;
 }
 
-mat-card {
+.department-card,
+.table-card {
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  margin-bottom: 24px;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+
+.header-section {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 24px;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-icon {
+
+  width: 70px;
+
+  height: 70px;
+
+  border-radius: 18px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 32px;
+
+  background: #eff6ff;
+}
+
+.header-content h1 {
+
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 600;
+
+  color: #1e293b;
+}
+
+.header-content p {
+
+  margin-top: 8px;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+/* Form */
+
+.department-form {
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.form-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 18px;
+}
+
+.button-section {
+
+  margin-top: 20px;
+
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+.button-section button {
+
+  min-width: 180px;
+
+  height: 44px;
+
+  border-radius: 8px;
+}
+
+/* Table */
+
+.table-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
 
   margin-bottom: 20px;
+}
 
-  padding: 20px;
+.table-header h2 {
+
+  margin: 0;
+
+  color: #1e293b;
+}
+
+.table-header span {
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.table-container {
+
+  overflow-x: auto;
 }
 
 table {
@@ -15,11 +152,50 @@ table {
   width: 100%;
 }
 
-form {
+.mat-mdc-header-row {
 
-  display: flex;
+  background: #f1f5f9;
+}
 
-  gap: 20px;
+.mat-mdc-header-cell {
 
-  align-items: center;
+  font-weight: 600;
+
+  color: #334155;
+}
+
+.mat-mdc-row:hover {
+
+  background: #f8fafc;
+
+  transition: 0.2s;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .department-container {
+
+    padding: 16px;
+  }
+
+  .table-header {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .button-section {
+
+    justify-content: stretch;
+  }
+
+  .button-section button {
+
+    width: 100%;
+  }
 }
