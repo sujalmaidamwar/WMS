@@ -88,9 +88,39 @@ export class LeaveManagementComponent
 
     this.initializeForm();
 
-    this.loadEmployees();
+    if (
+      this.isAdmin() ||
+      this.isManager()
+    ) {
+
+      this.loadEmployees();
+    }
+
+    if (
+      this.isEmployee()
+    ) {
+
+      const employeeId =
+        this.authService
+          .getEmployeeId();
+
+      this.leaveForm.patchValue({
+        employeeId: employeeId
+      });
+
+      console.log(
+        'EmployeeId:',
+        employeeId
+      );
+    }
 
     this.loadLeaveRequests();
+  }
+
+  isEmployee(): boolean {
+
+    return this.authService
+      .isEmployee();
   }
 
   initializeForm(): void {
@@ -150,8 +180,26 @@ export class LeaveManagementComponent
 
         next: (response) => {
 
-          this.leaveRequests =
-            response;
+          if (
+            this.isAdmin()
+          ) {
+
+            this.leaveRequests =
+              response;
+          }
+          else {
+
+            const employeeId =
+              this.authService
+                .getEmployeeId();
+
+            this.leaveRequests =
+              response.filter(
+                x =>
+                  x.employeeId ===
+                  employeeId
+              );
+          }
 
           this.cdr.detectChanges();
         }
@@ -160,7 +208,27 @@ export class LeaveManagementComponent
 
   onSubmit(): void {
 
-    if (this.leaveForm.invalid) {
+    if (
+      this.isEmployee()
+    ) {
+
+      this.leaveForm.patchValue({
+
+        employeeId:
+          this.authService
+            .getEmployeeId()
+
+      });
+    }
+
+    console.log(
+      'Leave Payload:',
+      this.leaveForm.value
+    );
+
+    if (
+      this.leaveForm.invalid
+    ) {
       return;
     }
 
@@ -178,7 +246,29 @@ export class LeaveManagementComponent
 
           this.leaveForm.reset();
 
+          if (
+            this.isEmployee()
+          ) {
+
+            this.leaveForm.patchValue({
+
+              employeeId:
+                this.authService
+                  .getEmployeeId()
+
+            });
+          }
+
           this.loadLeaveRequests();
+        },
+
+        error: (error) => {
+
+          console.log(error);
+
+          alert(
+            'Failed to submit leave request'
+          );
         }
       });
   }
@@ -226,27 +316,27 @@ export class LeaveManagementComponent
   }
 
   cancelLeave(
-  id: number
-): void {
+    id: number
+  ): void {
 
-  const confirmCancel =
-    confirm(
-      'Cancel this leave?'
-    );
+    const confirmCancel =
+      confirm(
+        'Cancel this leave?'
+      );
 
-  if (!confirmCancel)
-    return;
+    if (!confirmCancel)
+      return;
 
-  this.leaveRequestService
-    .deleteLeave(id)
-    .subscribe({
+    this.leaveRequestService
+      .deleteLeave(id)
+      .subscribe({
 
-      next: () => {
+        next: () => {
 
-        this.loadLeaveRequests();
-        this.cdr.detectChanges();
-        this.loadLeaveRequests();
-      }
-    });
-}
+          this.loadLeaveRequests();
+          this.cdr.detectChanges();
+          this.loadLeaveRequests();
+        }
+      });
+  }
 }

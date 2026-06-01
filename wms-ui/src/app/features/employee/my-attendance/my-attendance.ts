@@ -84,6 +84,18 @@ export class MyAttendance
 
           this.attendanceRecords =
             response;
+          console.log(
+            'Attendance API Response:',
+            response
+          );
+
+          console.log(
+            new Date(
+              '2026-06-01T07:37:12.1451542'
+            ).toLocaleString(
+              'en-IN'
+            )
+          );
 
           this.cdr.detectChanges();
         }

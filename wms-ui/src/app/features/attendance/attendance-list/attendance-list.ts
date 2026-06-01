@@ -132,6 +132,9 @@ export class AttendanceListComponent
         .getRole()
 
     );
+
+
+
   }
 
   initializeForm(): void {
@@ -164,7 +167,7 @@ export class AttendanceListComponent
 
         next: (response) => {
 
-          this.employees =response;
+          this.employees = response;
           this.cdr.detectChanges();
 
           console.log(this.employees);
@@ -187,6 +190,10 @@ export class AttendanceListComponent
         next: (response) => {
 
           this.attendanceList = response;
+          console.log(
+            'Attendance API Response:',
+            response
+          );
 
           this.cdr.detectChanges();
         }

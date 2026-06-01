@@ -17,11 +17,10 @@ export class AuthService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) { }
 
   login(data: any):
-    Observable<any>
-  {
+    Observable<any> {
     return this.http.post(
       `${this.apiUrl}/login`,
       data
@@ -75,55 +74,59 @@ export class AuthService {
 
   isAdmin(): boolean {
 
-  return this.getRole()
-    ?.toLowerCase()
+    return this.getRole()
+      ?.toLowerCase()
 
-    ===
+      ===
 
-    'admin';
-}
+      'admin';
+  }
 
-isManager(): boolean {
+  isManager(): boolean {
 
-  return this.getRole()
-    ?.toLowerCase()
+    return this.getRole()
+      ?.toLowerCase()
 
-    ===
+      ===
 
-    'manager';
-}
+      'manager';
+  }
 
-isEmployee(): boolean {
+  isEmployee(): boolean {
 
-  return this.getRole()
-    ?.toLowerCase()
+    return this.getRole()
+      ?.toLowerCase()
 
-    ===
+      ===
 
-    'employee';
-}
+      'employee';
+  }
 
   getEmployeeId(): number {
 
-  const token =
-    localStorage
-      .getItem('token');
+    const token =
+      this.getToken();
 
-  if (!token)
-    return 0;
+    if (!token) {
+      return 0;
+    }
 
-  const payload =
-    JSON.parse(
+    const payload =
+      JSON.parse(
+        atob(
+          token.split('.')[1]
+        )
+      );
 
-      atob(
-        token.split('.')[1]
-      )
+    console.log(
+      'JWT Payload:',
+      payload
     );
 
-  return Number(
-    payload.EmployeeId
-  );
-}
+    return Number(
+      payload['EmployeeId']
+    );
+  }
 
 
 }

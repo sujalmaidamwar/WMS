@@ -68,7 +68,7 @@ export class Login {
 
           else if (role === 'Employee') {
             this.router.navigate(
-              ['/leave-management']
+              ['/my-attendance']
             );
           }
         },

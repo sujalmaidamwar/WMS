@@ -86,14 +86,16 @@ public class AttendanceService : IAttendanceService
             });
     }
 
-    public async Task CheckInAsync(int employeeId,string workMode)
+    public async Task CheckInAsync(
+    int employeeId,
+    string workMode)
     {
         var attendance =
-            await _attendanceRepository.GetTodayAttendanceAsync(
-                employeeId
-            );
+            await _attendanceRepository
+                .GetTodayAttendanceAsync(
+                    employeeId
+                );
 
-        // Already checked in
         if (
             attendance != null &&
             attendance.CheckInTime != null
@@ -104,7 +106,6 @@ public class AttendanceService : IAttendanceService
             );
         }
 
-        // Create today's attendance
         if (attendance == null)
         {
             attendance = new Attendance
@@ -114,23 +115,32 @@ public class AttendanceService : IAttendanceService
                 Status = "Present"
             };
 
-            await _attendanceRepository.AddAsync(attendance);
+            await _attendanceRepository
+                .AddAsync(attendance);
         }
 
-        // Update attendance
-        attendance.CheckInTime = DateTime.Now;
+        var istTime =
+            TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+                DateTime.UtcNow,
+                "India Standard Time"
+            );
+
+        attendance.CheckInTime = istTime;
         attendance.WorkMode = workMode;
         attendance.Status = "Present";
 
-        await _attendanceRepository.UpdateAsync(attendance);
+        await _attendanceRepository
+            .UpdateAsync(attendance);
     }
 
-    public async Task CheckOutAsync(int employeeId)
+    public async Task CheckOutAsync(
+     int employeeId)
     {
         var attendance =
-            await _attendanceRepository.GetTodayAttendanceAsync(
-                employeeId
-            );
+            await _attendanceRepository
+                .GetTodayAttendanceAsync(
+                    employeeId
+                );
 
         if (attendance == null)
         {
@@ -146,7 +156,13 @@ public class AttendanceService : IAttendanceService
             );
         }
 
-        attendance.CheckOutTime = DateTime.Now;
+        var istTime =
+            TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+                DateTime.UtcNow,
+                "India Standard Time"
+            );
+
+        attendance.CheckOutTime = istTime;
 
         attendance.TotalHours =
             (
@@ -155,6 +171,7 @@ public class AttendanceService : IAttendanceService
                 attendance.CheckInTime
             )?.TotalHours;
 
-        await _attendanceRepository.UpdateAsync(attendance);
+        await _attendanceRepository
+            .UpdateAsync(attendance);
     }
 }
