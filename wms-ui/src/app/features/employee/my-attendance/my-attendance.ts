@@ -83,18 +83,37 @@ export class MyAttendance
         next: (response) => {
 
           this.attendanceRecords =
-            response;
+            response.map((record : any) => ({
+
+              ...record,
+
+              checkInTime:
+                record.checkInTime
+                  ? new Date(
+                    new Date(
+                      record.checkInTime
+                    ).getTime()
+                    +
+                    (5.5 * 60 * 60 * 1000)
+                  )
+                  : null,
+
+              checkOutTime:
+                record.checkOutTime
+                  ? new Date(
+                    new Date(
+                      record.checkOutTime
+                    ).getTime()
+                    +
+                    (5.5 * 60 * 60 * 1000)
+                  )
+                  : null
+
+            }));
+
           console.log(
             'Attendance API Response:',
             response
-          );
-
-          console.log(
-            new Date(
-              '2026-06-01T07:37:12.1451542'
-            ).toLocaleString(
-              'en-IN'
-            )
           );
 
           this.cdr.detectChanges();

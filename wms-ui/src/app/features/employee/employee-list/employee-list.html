@@ -18,10 +18,7 @@
 
       </div>
 
-      <button
-        mat-raised-button
-        color="primary"
-        routerLink="/add-employee">
+      <button mat-raised-button color="primary" routerLink="/add-employee">
 
         + Add Employee
 
@@ -29,29 +26,99 @@
 
     </div>
 
+
+    <div class="search-section">
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+
+          Search Name / ID
+
+        </mat-label>
+
+        <input matInput [(ngModel)]="searchText" (keyup)="filterEmployees()">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+
+          Department
+
+        </mat-label>
+
+        <mat-select [(ngModel)]="selectedDepartment" (selectionChange)="filterEmployees()">
+
+          <mat-option value="">
+
+            All Departments
+
+          </mat-option>
+
+          <mat-option *ngFor="let dept of departments" [value]="dept">
+
+            {{ dept }}
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+
+          Role
+
+        </mat-label>
+
+        <mat-select [(ngModel)]="selectedRole" (selectionChange)="filterEmployees()">
+
+          <mat-option value="">
+
+            All Roles
+
+          </mat-option>
+
+
+          <mat-option value="Manager">
+
+            Manager
+
+          </mat-option>
+
+          <mat-option value="Employee">
+
+            Employee
+
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
     <!-- Table -->
 
     <div class="table-container">
 
-      <table
-        mat-table
-        [dataSource]="employees">
+      <table mat-table [dataSource]="employees">
 
         <!-- Employee ID -->
 
         <ng-container matColumnDef="employeeId">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             ID
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             {{ employee.employeeId }}
 
@@ -63,17 +130,13 @@
 
         <ng-container matColumnDef="firstName">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             First Name
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             <strong>
 
@@ -89,17 +152,13 @@
 
         <ng-container matColumnDef="lastName">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Last Name
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             {{ employee.lastName }}
 
@@ -111,17 +170,13 @@
 
         <ng-container matColumnDef="email">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Email
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             {{ employee.email }}
 
@@ -133,17 +188,13 @@
 
         <ng-container matColumnDef="phoneNumber">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Phone
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             {{ employee.phoneNumber }}
 
@@ -155,17 +206,13 @@
 
         <ng-container matColumnDef="departmentName">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Department
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             {{ employee.departmentName }}
 
@@ -177,29 +224,21 @@
 
         <ng-container matColumnDef="status">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Status
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
-            <span
-              *ngIf="employee.status === 'Active'"
-              class="status-badge active">
+            <span *ngIf="employee.status === 'Active'" class="status-badge active">
 
               Active
 
             </span>
 
-            <span
-              *ngIf="employee.status !== 'Active'"
-              class="status-badge inactive">
+            <span *ngIf="employee.status !== 'Active'" class="status-badge inactive">
 
               {{ employee.status }}
 
@@ -213,25 +252,17 @@
 
         <ng-container matColumnDef="actions">
 
-          <th
-            mat-header-cell
-            *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef>
 
             Actions
 
           </th>
 
-          <td
-            mat-cell
-            *matCellDef="let employee">
+          <td mat-cell *matCellDef="let employee">
 
             <div class="action-buttons">
 
-              <button
-                mat-stroked-button
-                color="primary"
-
-                [routerLink]="[
+              <button mat-stroked-button color="primary" [routerLink]="[
                   '/edit-employee',
                   employee.employeeId
                 ]">
@@ -240,11 +271,7 @@
 
               </button>
 
-              <button
-                mat-stroked-button
-                color="warn"
-
-                (click)="
+              <button mat-stroked-button color="warn" (click)="
                   deleteEmployee(
                     employee.employeeId
                   )
@@ -260,16 +287,12 @@
 
         </ng-container>
 
-        <tr
-          mat-header-row
-          *matHeaderRowDef="
+        <tr mat-header-row *matHeaderRowDef="
             displayedColumns
           ">
         </tr>
 
-        <tr
-          mat-row
-          *matRowDef="
+        <tr mat-row *matRowDef="
             let row;
             columns: displayedColumns
           ">

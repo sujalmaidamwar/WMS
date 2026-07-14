@@ -7,6 +7,7 @@ import { Employee } from '../../../core/models/employee.model';
 import { MaterialModule } from '../../../shared/material/material.module';
 
 import { EmployeeService } from '../services/employee';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,7 +17,8 @@ import { EmployeeService } from '../services/employee';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    FormsModule
 
   ],
 
@@ -27,6 +29,16 @@ import { EmployeeService } from '../services/employee';
 
 export class EmployeeListComponent
   implements OnInit {
+
+  allEmployees: Employee[] = [];
+
+  searchText = '';
+
+  selectedDepartment = '';
+
+  selectedRole = '';
+
+  departments: string[] = [];
 
   employees: Employee[] = [];
 
@@ -60,18 +72,91 @@ export class EmployeeListComponent
 
         next: (response) => {
 
+          this.allEmployees = response;
+
           this.employees = response;
 
-          this.cdr.detectChanges();
+          this.departments =
+            [
+              ...new Set(
+                response.map(
+                  employee =>
+                    employee.departmentName
+                )
+              )
+            ];
 
-          console.log(this.employees);
-          console.log(this.employees.length);
+          this.cdr.detectChanges();
         },
 
         error: (error) => {
 
           console.log(error);
         }
+      });
+  }
+
+  filterEmployees(): void {
+
+    this.employees =
+      this.allEmployees.filter(employee => {
+
+        const matchesSearch =
+
+          employee.firstName
+            .toLowerCase()
+            .includes(
+              this.searchText
+                .toLowerCase()
+            )
+
+          ||
+
+          employee.lastName
+            .toLowerCase()
+            .includes(
+              this.searchText
+                .toLowerCase()
+            )
+
+          ||
+
+          employee.employeeId
+            .toString()
+            .includes(
+              this.searchText
+            );
+
+        const matchesDepartment =
+
+          !this.selectedDepartment
+
+          ||
+
+          employee.departmentName ===
+          this.selectedDepartment;
+
+        const matchesRole =
+
+          !this.selectedRole
+
+          ||
+
+          employee.role ===
+          this.selectedRole;
+
+        return (
+
+          matchesSearch
+
+          &&
+
+          matchesDepartment
+
+          &&
+
+          matchesRole
+        );
       });
   }
 
@@ -103,7 +188,7 @@ export class EmployeeListComponent
           console.log(error);
           console.log("FULL ERROR:", error);
 
-          console.log("ROLE ERROR:",error.error.errors.Role );
+          console.log("ROLE ERROR:", error.error.errors.Role);
 
           console.log("STATUS:", error.status);
 

@@ -86,9 +86,45 @@
 
     </mat-card>
 
+    <mat-card class="stat-card projects">
+
+      <div class="card-icon">
+        📁
+      </div>
+
+      <div>
+
+        <h3>Total Projects</h3>
+
+        <h1>{{ totalProjects }}</h1>
+
+      </div>
+
+    </mat-card>
+
+    <mat-card class="stat-card leave">
+
+      <div class="card-icon">
+        🏖️
+      </div>
+
+      <div>
+
+        <h3>Pending Leaves</h3>
+
+        <h1>{{ pendingLeaves }}</h1>
+
+      </div>
+
+    </mat-card>
+
   </div>
 
   <!-- Chart Section -->
+
+  <div class="charts-grid">
+
+  <!-- Attendance Chart -->
 
   <mat-card class="chart-card">
 
@@ -98,12 +134,6 @@
         Attendance Overview
       </h2>
 
-      <span class="chart-subtitle">
-
-        Present vs Absent Distribution
-
-      </span>
-
     </div>
 
     <div class="chart-wrapper">
@@ -112,11 +142,36 @@
         baseChart
         [data]="pieChartData"
         [type]="pieChartType">
-
       </canvas>
 
     </div>
 
   </mat-card>
+
+  <!-- Leave Chart -->
+
+  <mat-card class="chart-card">
+
+    <div class="chart-header">
+
+      <h2>
+        Leave Statistics
+      </h2>
+
+    </div>
+
+    <div class="chart-wrapper">
+
+      <canvas
+        baseChart
+        [data]="leaveChartData"
+        [type]="leaveChartType">
+      </canvas>
+
+    </div>
+
+  </mat-card>
+
+</div>
 
 </div>

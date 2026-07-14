@@ -7,4 +7,12 @@ export interface DashboardStats {
   absentToday: number;
 
   totalAttendance: number;
+
+  totalProjects: number;
+
+  pendingLeaves: number;
+
+  approvedLeaves: number;
+
+  rejectedLeaves: number;
 }

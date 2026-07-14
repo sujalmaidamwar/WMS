@@ -7,6 +7,9 @@ import { EmployeeService } from '../../employee/services/employee';
 
 import { DashboardStats } from '../../../core/models/dashboard-stats.model';
 import { AuthService } from '../../../core/services/auth';
+import { ProjectService } from '../../project/services/project';
+
+import { LeaveRequestService } from '../../leave/services/leave-request';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,12 @@ import { AuthService } from '../../../core/services/auth';
 export class DashboardService {
 
   constructor(
+    private projectService:
+      ProjectService,
+
+    private leaveRequestService:
+      LeaveRequestService,
+
     private employeeService:
       EmployeeService,
 
@@ -32,12 +41,17 @@ export class DashboardService {
         this.employeeService
           .getEmployees(),
 
-
-
       attendance:
         this.attendanceService
-          .getAttendance()
+          .getAttendance(),
 
+      projects:
+        this.projectService
+          .getProjects(),
+
+      leaveRequests:
+        this.leaveRequestService
+          .getLeaveRequests()
 
     }).pipe(
 
@@ -46,8 +60,8 @@ export class DashboardService {
         const employeeCount =
           data.employees.length;
 
-          console.log(employeeCount);
-          console.log("----------");
+        console.log(employeeCount);
+        console.log("----------");
         const today =
           new Date()
             .toLocaleDateString('en-CA');
@@ -85,6 +99,33 @@ export class DashboardService {
           employeeCount -
           presentToday;
 
+        const pendingLeaves =
+          data.leaveRequests.filter(
+            (leave: any) =>
+
+              leave.status ===
+              'Pending'
+          ).length;
+
+        const approvedLeaves =
+          data.leaveRequests.filter(
+            (leave: any) =>
+
+              leave.status ===
+              'Approved'
+          ).length;
+
+        const rejectedLeaves =
+          data.leaveRequests.filter(
+            (leave: any) =>
+
+              leave.status ===
+              'Rejected'
+          ).length;
+
+        const totalProjects =
+          data.projects.length;
+
         return {
 
           totalEmployees:
@@ -94,8 +135,15 @@ export class DashboardService {
 
           absentToday,
 
-          totalAttendance:
-            data.attendance.length
+          totalAttendance: data.attendance.length,
+
+          totalProjects,
+
+          pendingLeaves,
+
+          approvedLeaves,
+
+          rejectedLeaves
         };
 
       })

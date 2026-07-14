@@ -45,9 +45,8 @@ import { AuthService } from '../../../core/services/auth';
 })
 
 export class
-AnnouncementList
-implements OnInit
-{
+  AnnouncementList
+  implements OnInit {
   announcements:
     Announcement[] = [];
 
@@ -67,11 +66,11 @@ implements OnInit
 
   constructor(
     private announcementService:
-        AnnouncementService,
+      AnnouncementService,
 
-    private cdr : ChangeDetectorRef,
-    private authService : AuthService
-  ) {}
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
 
@@ -79,8 +78,7 @@ implements OnInit
   }
 
   loadAnnouncements():
-    void
-  {
+    void {
     this
       .announcementService
 
@@ -93,7 +91,7 @@ implements OnInit
           this.announcements =
             response;
 
-            this.cdr.detectChanges();
+          this.cdr.detectChanges();
         }
       });
   }

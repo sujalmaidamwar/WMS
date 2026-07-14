@@ -12,8 +12,7 @@ import {
 export const roleGuard:
 CanActivateFn = (
 
-  route,
-  state
+  route
 
 ) => {
 

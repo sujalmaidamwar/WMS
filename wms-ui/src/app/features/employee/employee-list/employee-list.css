@@ -143,4 +143,20 @@ table {
 
     flex-direction: column;
   }
+
+  .search-section {
+
+    display: flex;
+
+    gap: 16px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 20px;
+  }
+
+  .search-section mat-form-field {
+
+    min-width: 220px;
+  }
 }

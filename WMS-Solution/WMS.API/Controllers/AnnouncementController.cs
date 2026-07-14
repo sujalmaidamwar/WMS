@@ -11,6 +11,7 @@ namespace WMS.API.Controllers
     [Authorize]
     public class AnnouncementController : ControllerBase
     {
+
         private readonly IAnnouncementService _service;
 
         public AnnouncementController(IAnnouncementService service)

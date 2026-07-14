@@ -49,11 +49,9 @@ import { AnnouncementService } from '../service/announcement';
     ['./add-announcement.css']
 })
 
-export class
-AddAnnouncement
+export class AddAnnouncement
 {
-  announcementForm:
-    FormGroup;
+  announcementForm: FormGroup;
 
   constructor(
 

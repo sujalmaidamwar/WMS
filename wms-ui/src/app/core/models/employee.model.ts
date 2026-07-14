@@ -10,6 +10,10 @@ export interface Employee {
 
   phoneNumber: string;
 
+  departmentName : string;
+
+  role : string;
+
   dob: Date;
 
   doj: Date;

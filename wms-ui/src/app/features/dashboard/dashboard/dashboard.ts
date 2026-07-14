@@ -64,7 +64,33 @@ export class Dashboard
 
   totalAttendance = 0;
 
+  totalProjects = 0;
+
+  pendingLeaves = 0;
+
+  approvedLeaves = 0;
+
+  rejectedLeaves = 0;
+
   pieChartType: ChartType = 'pie';
+
+  leaveChartType: ChartType = 'doughnut';
+
+  leaveChartData:
+    ChartConfiguration<'doughnut'>['data']
+    = {
+      labels: [
+        'Approved',
+        'Pending',
+        'Rejected'
+      ],
+
+      datasets: [
+        {
+          data: [0, 0, 0]
+        }
+      ]
+    };
 
   pieChartData:
     ChartConfiguration<'pie'>['data']
@@ -113,6 +139,43 @@ export class Dashboard
 
           this.totalAttendance =
             response.totalAttendance;
+
+          this.totalProjects =
+            response.totalProjects;
+
+          this.pendingLeaves =
+            response.pendingLeaves;
+
+          this.approvedLeaves =
+            response.approvedLeaves;
+
+          this.rejectedLeaves =
+            response.rejectedLeaves;
+
+          this.leaveChartData = {
+
+            labels: [
+              'Approved',
+              'Pending',
+              'Rejected'
+            ],
+
+            datasets: [
+              {
+                data: [
+                  this.approvedLeaves,
+                  this.pendingLeaves,
+                  this.rejectedLeaves
+                ],
+
+                backgroundColor: [
+                  '#88f68c',
+                  '#eece6b',
+                  '#f24f44'
+                ]
+              }
+            ]
+          };
 
           console.log(response);
 

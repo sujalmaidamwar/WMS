@@ -158,14 +158,7 @@ namespace WMS.API
 
             app.MapControllers();
 
-            Console.WriteLine(
-                BCrypt.Net.BCrypt.HashPassword("manager123"),
-                BCrypt.Net.BCrypt.HashPassword("manager123")
-                );
-
-            var adminHash = BCrypt.Net.BCrypt.HashPassword("Sujal123");
-
-            var managerHash = BCrypt.Net.BCrypt.HashPassword("Manthan123");
+            
 
             app.Run();
         }

@@ -19,9 +19,4 @@
     <ProjectReference Include="..\WMS.Domain\WMS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
 </Project>

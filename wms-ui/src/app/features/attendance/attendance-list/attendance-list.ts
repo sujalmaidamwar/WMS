@@ -269,11 +269,38 @@ export class AttendanceListComponent
         next: (response: any) => {
 
           this.attendanceList =
-            response;
+            response.map((record: any) => ({
+
+              ...record,
+
+              checkInTime:
+                record.checkInTime
+                  ? new Date(
+                    new Date(
+                      record.checkInTime
+                    ).getTime()
+                    + 19800000
+                  )
+                  : null,
+
+              checkOutTime:
+                record.checkOutTime
+                  ? new Date(
+                    new Date(
+                      record.checkOutTime
+                    ).getTime()
+                    + 19800000
+                  )
+                  : null
+
+            }));
 
           this.cdr.detectChanges();
-          // this.loadAttendance();
-          console.log(response);
+
+          console.log(
+            'Attendance API Response:',
+            this.attendanceList
+          );
         }
       });
   }
